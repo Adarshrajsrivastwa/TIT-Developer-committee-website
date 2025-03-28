@@ -4,12 +4,15 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Typed from "typed.js";
+import PhotoSlider from "./PhotoSlider";
 
 const HeroSection = () => {
     const heroRef = useRef(null);
+    const typedRef = useRef(null);
 
     useEffect(() => {
-        const heroElements = heroRef.current.children;
+        const heroElements = heroRef.current.querySelectorAll('.animate-element');
 
         gsap.fromTo(
             heroElements,
@@ -29,74 +32,70 @@ const HeroSection = () => {
         );
     }, []);
 
+    useEffect(() => {
+        const typed = new Typed(typedRef.current, {
+            strings: [
+                "<span class='font-bold text-gray-900'>Empowering Juniors, Led by Seniors</span>",
+                "<span class='font-semibold text-gray-700 text-4xl'>90%+ ATS-Friendly Resumes</span>",
+                "<span class='font-semibold text-gray-700 text-4xl'>Mastering Versatile Tech Domains</span>",
+                "<span class='font-semibold text-gray-700 text-4xl  '>Empowered 15+ Students in Machine Learning</span>"
+            ],
+            typeSpeed: 50,
+            backSpeed: 25,
+            startDelay: 500,
+            backDelay: 2000,
+            loop: true,
+            showCursor: true,
+            cursorChar: "|",
+            contentType: 'html'
+        });
+        return () => typed.destroy();
+    }, []);
+
     return (
         <div
             ref={heroRef}
-            className="relative min-h-screen flex flex-col justify-center items-center 
-        bg-gradient-to-br from-blue-50 to-purple-100 text-center px-4 overflow-hidden"
+            className="relative min-h-screen flex flex-col items-center
+            px-6 md:px-12 overflow-hidden text-center md:text-left mt-20"
         >
-            {/* Floating Mentor Images */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
-                <motion.img
-                    src="/assets/img/mentor-img/Ankit-Kumar.jpeg"
-                    alt="Mentor 1"
-                    className="
-          absolute w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full shadow-lg animate-blob
-          top-10 left-5 sm:top-20 sm:left-10
-        "
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                <motion.img
-                    src="/assets/img/mentor-img/Anand-Soni.jpeg"
-                    alt="Mentor 2"
-                    className="
-          absolute w-28 h-28 sm:w-36 sm:h-36 md:w-48 md:h-48 rounded-full shadow-lg animate-blob
-          bottom-5 right-10 sm:bottom-10 sm:right-20 md:right-40
-        "
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                <motion.img
-                    src="/assets/img/mentor-img/Ankit-Patel.jpeg"
-                    alt="Mentor 3"
-                    className="
-          absolute w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full shadow-lg animate-blob
-          top-10 right-5 sm:top-1/3 sm:right-10 md:right-20
-        "
-                    animate={{ scale: [1, 1.08, 1] }}
-                    transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                />
+            {/* Photo Slider for Mobile */}
+            <div className="block md:hidden w-full max-w-md mx-auto mb-2">
+                <PhotoSlider />
             </div>
 
-            {/* Main Hero Text */}
-            <motion.h1
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 relative z-10"
-            >
-                Empowering Juniors, Led by Seniors
-            </motion.h1>
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center mt-4">
+                {/* Left Content */}
+                <div className="space-y-6 md:pr-12">
+                    <h1
+                        className="animate-element text-4xl md:text-6xl leading-tight"
+                    >
+                        <span ref={typedRef}></span>
+                    </h1>
 
-            <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto relative z-10">
-                Join the Revolution of Tech Learning and Mentorship. Transforming students into industry-ready professionals.
-            </p>
+                    <p className="animate-element text-lg md:text-xl text-gray-600 max-w-md md:max-w-xl mx-auto md:mx-0">
+                        Join the Revolution of Tech Learning and Mentorship. Transforming students into industry-ready professionals.
+                    </p>
 
-            {/* Join Us Button */}
-            <Link to="/join-us">
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold 
-          hover:bg-indigo-800 transition-colors flex items-center group relative z-10"
-                >
-                    Join Us Now
-                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </motion.button></Link>
+                    <div className="flex justify-center md:justify-start">
+                        <Link to="/join-us">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="animate-element bg-indigo-600 text-white px-6 md:px-8 py-3 rounded-full text-lg font-semibold 
+                                hover:bg-indigo-800 transition-colors flex items-center group"
+                            >
+                                Join Us Now
+                                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                            </motion.button>
+                        </Link>
+                    </div>
+                </div>
 
+                {/* Right Content - Photo Slider (Only for Desktop) */}
+                <div className="hidden md:block mt-0">
+                    <PhotoSlider />
+                </div>
+            </div>
         </div>
     );
 };
