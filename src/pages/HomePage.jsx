@@ -38,13 +38,9 @@ function Home() {
   });
 
   return (
-    <div className="flex flex-col min-h-screen mt-8">
+    <div className="flex flex-col min-h-screen mt-8 bg-white">
       <div ref={sectionRefs.hero}>
         <HeroSection />
-      </div>
-
-      <div ref={sectionRefs.photoSlider} className="my-16">
-        <PhotoSlider />
       </div>
 
       <div ref={sectionRefs.impact}>
