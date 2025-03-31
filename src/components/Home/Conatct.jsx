@@ -87,7 +87,7 @@ const Contact = () => {
 
   return (
     <section ref={sectionRef} className="bg-gray-100 py-16 mt-10">
-      <div className="container mx-auto px-6">
+      <div className="container px-3">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-10">
           Contact <span className="text-indigo-600">Us</span>
         </h2>
