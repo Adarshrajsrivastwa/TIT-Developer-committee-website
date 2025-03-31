@@ -25,7 +25,7 @@ const JoinPathways = [
       "Trophies for Top 3 Performers"
     ],
     icon: <CodeIcon className="text-green-500" />,
-    formLink: "/forms/coding-quest"
+    formLink: "https://forms.gle/HtDsmipULHYzFbL4A"
   },
   {
     id: 2,
