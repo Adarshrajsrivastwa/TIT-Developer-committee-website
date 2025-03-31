@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -167,18 +168,20 @@ const Contact = () => {
             </div>
             <div
               ref={(el) => (infoRefs.current[2] = el)}
-              className="flex items-center space-x-4 bg-white p-5 rounded-xl shadow-md"
-            >
-              <MapPin className="text-red-500" size={40} />
-              <div>
-                <p className="text-lg font-semibold text-gray-800">Address</p>
-                <p className="text-gray-600">TIT Campus, Bhopal, India</p>
-              </div>
+              className="flex items-center space-x-4 bg-white p-5 rounded-xl shadow-md">
+              < Instagram className="text-pink-400" size={40} />
+              <Link to="https://www.instagram.com/titdevelopercommunity?igsh=MWpkdGF1ZXJuZG1qag==">
+                <div>
+                  <p className="text-lg font-semibold text-gray-800">Instagram</p>
+                  <p className="text-gray-600">TIT Developer Community</p>
+                </div>
+              </Link>
             </div>
+
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 

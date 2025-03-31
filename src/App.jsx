@@ -8,8 +8,6 @@ import Mentors from './pages/Mentors';
 import Events from './pages/Events';
 import HallOfFame from './pages/HallOfFame';
 import Testimonials from './pages/Testimonials';
-import FAQs from './pages/FAQs';
-import ContactUs from './pages/ContactUs';
 import JoinUs from './pages/JoinUs';
 
 function App() {
@@ -24,8 +22,6 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/hall-of-fame" element={<HallOfFame />} />
           <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/faqs" element={<FAQs />} />
-          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/join-us" element={<JoinUs />} />
         </Routes>
         <Footer />

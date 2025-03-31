@@ -21,8 +21,6 @@ const Navbar = () => {
         { name: "Events", path: "/events" },
         { name: "Hall of Fame", path: "/hall-of-fame" },
         { name: "Testimonials", path: "/testimonials" },
-        { name: "FAQs", path: "/faqs" },
-        { name: "Contact Us", path: "/contact-us" },
     ];
 
     // Function to determine if a link is active

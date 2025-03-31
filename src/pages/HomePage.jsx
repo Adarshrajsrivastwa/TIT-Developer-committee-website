@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroSection from '../components/Home/HeroSection.jsx';
 import ImpactSection from '../components/Home/ImpactSection';
+import FAQSection from '../components/Home/FAQSection.jsx';
+import Contact from '../components/Home/Conatct.jsx';
 
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -11,7 +13,9 @@ function Home() {
   const sectionRefs = {
     hero: useRef(null),
     photoSlider: useRef(null),
-    impact: useRef(null)
+    impact: useRef(null),
+    faqs: useRef(null),
+    contactUs: useRef(null)
   };
 
   useEffect(() => {
@@ -44,6 +48,12 @@ function Home() {
 
       <div ref={sectionRefs.impact}>
         <ImpactSection />
+      </div>
+      <div ref={sectionRefs.faqs}>
+        <FAQSection />
+      </div>
+      <div ref={sectionRefs.contactUs}>
+        <Contact />
       </div>
     </div>
   );
