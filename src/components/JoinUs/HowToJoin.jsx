@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { 
-  CodeIcon, 
-  TrophyIcon, 
-  UsersIcon, 
-  CalendarIcon, 
-  FilterIcon 
+import {
+  CodeIcon,
+  TrophyIcon,
+  UsersIcon,
+  CalendarIcon,
+  FilterIcon,
+  FileTextIcon
 } from 'lucide-react';
 
 const JoinPathways = [
@@ -23,7 +24,8 @@ const JoinPathways = [
       "₹1000 for Category Toppers",
       "Trophies for Top 3 Performers"
     ],
-    icon: <CodeIcon className="text-green-500" />
+    icon: <CodeIcon className="text-green-500" />,
+    formLink: "/forms/coding-quest"
   },
   {
     id: 2,
@@ -39,7 +41,8 @@ const JoinPathways = [
       "Direct Community Membership",
       "Mentorship Opportunities"
     ],
-    icon: <TrophyIcon className="text-blue-500" />
+    icon: <TrophyIcon className="text-blue-500" />,
+    formLink: "/forms/hackathon-recruitment"
   }
 ];
 
@@ -134,7 +137,7 @@ const HowToJoin = () => {
                 </div>
               </div>
               <p className="text-gray-600 mb-4 text-sm">{pathway.description}</p>
-              
+
               <div className="mb-4">
                 <h4 className="text-md font-semibold text-gray-700 mb-2">Selection Process</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
@@ -159,7 +162,7 @@ const HowToJoin = () => {
                 </ul>
               </div>
 
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mb-4">
                 <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs">
                   {pathway.type}
                 </span>
@@ -167,6 +170,15 @@ const HowToJoin = () => {
                   {pathway.participants} Potential Participants
                 </span>
               </div>
+
+              {/* Added Fill Form Button */}
+              <a
+                href={pathway.formLink}
+                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-center py-3 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center"
+              >
+                <FileTextIcon size={16} className="mr-2" />
+                Fill Application Form
+              </a>
             </div>
           ))}
         </div>

@@ -7,7 +7,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
     const currentPath = location.pathname;
-    
+
     const logoRef = useRef(null);
     const joinButtonRef = useRef(null);
     const mobileMenuRef = useRef(null);
@@ -21,6 +21,8 @@ const Navbar = () => {
         { name: "Events", path: "/events" },
         { name: "Hall of Fame", path: "/hall-of-fame" },
         { name: "Testimonials", path: "/testimonials" },
+        { name: "FAQs", path: "/faqs" },
+        { name: "Contact Us", path: "/contact-us" },
     ];
 
     // Function to determine if a link is active
@@ -28,21 +30,21 @@ const Navbar = () => {
         if (linkPath === "/") {
             return currentPath === "/";
         } else {
-            return currentPath === linkPath || 
-                  (currentPath.startsWith(linkPath + "/") && linkPath !== "/");
+            return currentPath === linkPath ||
+                (currentPath.startsWith(linkPath + "/") && linkPath !== "/");
         }
     };
 
     // Initial load animations - only run once
     useEffect(() => {
         if (initialLoadComplete.current) return;
-        
+
         // Clear previous refs to prevent stale references
         linkRefs.current = linkRefs.current.slice(0, navLinks.length);
-        
+
         // Initial animation timeline
         const tl = gsap.timeline();
-        
+
         // 1. Logo animation
         if (logoRef.current) {
             tl.fromTo(
@@ -51,23 +53,23 @@ const Navbar = () => {
                 { opacity: 1, y: 0, duration: 0.6, ease: "bounce.out" }
             );
         }
-        
+
         // 2. Navigation links
         if (linkRefs.current.length > 0 && linkRefs.current[0]) {
             tl.fromTo(
                 linkRefs.current,
                 { opacity: 0, y: -30 },
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    stagger: 0.1, 
-                    duration: 0.4, 
-                    ease: "back.out(1.7)" 
+                {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 0.4,
+                    ease: "back.out(1.7)"
                 },
                 "-=0.2"
             );
         }
-        
+
         // 3. Join Us button
         if (joinButtonRef.current) {
             tl.fromTo(
@@ -100,7 +102,7 @@ const Navbar = () => {
             if (link && index < navLinks.length) {
                 const linkPath = navLinks[index].path;
                 const active = isLinkActive(linkPath);
-                
+
                 // Clean up previous animations
                 const existingUnderline = link.querySelector(".nav-underline");
                 if (existingUnderline) {
@@ -111,17 +113,17 @@ const Navbar = () => {
                 const underline = document.createElement("span");
                 underline.classList.add("nav-underline", "absolute", "bottom-0", "left-0", "h-[2px]", "bg-indigo-600", "transition-all", "duration-300");
                 link.appendChild(underline);
-                
+
                 // Set initial state
                 gsap.set(link, { position: "relative", overflow: "hidden" });
-                
+
                 if (active) {
                     gsap.set(underline, { width: "100%" });
                     gsap.set(link, { fontWeight: "bold", color: "#4f46e5" });
                 } else {
                     gsap.set(underline, { width: "0%" });
                     gsap.set(link, { fontWeight: "normal", color: "#1f2937" });
-                    
+
                     // Add hover effects only to non-active links
                     link.addEventListener("mouseenter", () => {
                         gsap.to(underline, { width: "100%", duration: 0.1 });
@@ -145,9 +147,9 @@ const Navbar = () => {
         <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-gray-100/5">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center relative">
                 {/* Logo */}
-                <Link 
+                <Link
                     ref={logoRef}
-                    to="/" 
+                    to="/"
                     className="text-2xl font-bold text-indigo-600 flex items-center space-x-2 transform transition hover:scale-105"
                 >
                     <span>TIT DevComm</span>
@@ -157,15 +159,14 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
                     {navLinks.map((link, index) => {
                         const active = isLinkActive(link.path);
-                        
+
                         return (
                             <Link
                                 key={index}
                                 ref={(el) => (linkRefs.current[index] = el)}
                                 to={link.path}
-                                className={`relative pb-1 transition-all duration-300 ${
-                                    active ? "font-bold text-indigo-600" : "text-gray-800"
-                                }`}
+                                className={`relative pb-1 transition-all duration-300 ${active ? "font-bold text-indigo-600" : "text-gray-800"
+                                    }`}
                             >
                                 {link.name}
                             </Link>
@@ -198,21 +199,20 @@ const Navbar = () => {
                     <div className="container mx-auto px-4 py-4">
                         {navLinks.map((link, index) => {
                             const active = isLinkActive(link.path);
-                            
+
                             return (
                                 <Link
                                     key={index}
                                     to={link.path}
                                     onClick={toggleMobileMenu}
-                                    className={`block py-3 border-b last:border-b-0 transition-all duration-300 transform ${
-                                        active ? "font-bold text-indigo-600" : "text-gray-800"
-                                    }`}
+                                    className={`block py-3 border-b last:border-b-0 transition-all duration-300 transform ${active ? "font-bold text-indigo-600" : "text-gray-800"
+                                        }`}
                                 >
                                     {link.name}
                                 </Link>
                             );
                         })}
-                        
+
                         {/* Add Join Us to mobile menu too */}
                         <Link
                             to="/join-us"

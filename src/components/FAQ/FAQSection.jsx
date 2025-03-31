@@ -63,7 +63,7 @@ const FAQSection = () => {
     faqs.forEach((faq, index) => {
       gsap.fromTo(
         faq,
-        { opacity: 0, x: -30 },
+        { opacity: 0, x: -100 },
         {
           opacity: 1,
           x: 0,
@@ -95,7 +95,7 @@ const FAQSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative bg-white py-16 overflow-hidden"
+      className="relative bg-gray-100 py-16 overflow-hidden mt-10"
     >
       {/* Floating Icons */}
       <div className="absolute top-10 left-10 text-blue-400 floating-icon opacity-20">
@@ -113,7 +113,7 @@ const FAQSection = () => {
 
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-10">
-          Frequently Asked Questions
+          Frequently Asked <span className="text-indigo-600">Questions</span>
         </h2>
 
         <div className="max-w-3xl mx-auto">

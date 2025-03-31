@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 // contact section 
-const ContactUs = () => {
+const Contact = () => {
   const sectionRef = useRef(null);
   const formRef = useRef(null);
   const infoRefs = useRef([]);
@@ -85,7 +85,7 @@ const ContactUs = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-gray-50 py-16">
+    <section ref={sectionRef} className="bg-gray-100 py-16 mt-10">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-10">
           Contact <span className="text-indigo-600">Us</span>
@@ -182,4 +182,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default Contact;

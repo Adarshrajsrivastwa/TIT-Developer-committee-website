@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { LinkedinIcon, AwardIcon } from 'lucide-react';
+import { LinkedinIcon, AwardIcon, User } from 'lucide-react';
 
 const mentors = [
     {
@@ -44,10 +44,10 @@ const MentorCard = ({ mentor }) => {
     useEffect(() => {
         const card = cardRef.current;
 
-        // gsap.set(card, {
-        //     perspective: 600,
-        //     transformStyle: 'preserve-3d'
-        // });
+        gsap.set(card, {
+            perspective: 600,
+            transformStyle: 'preserve-3d'
+        });
 
         card.addEventListener('mouseenter', () => {
             gsap.to(card, {
@@ -130,10 +130,27 @@ const MentorCard = ({ mentor }) => {
 };
 
 const MentorsPage = () => {
+
+    const headRef = useRef(null);
+
+    useEffect(() => {
+        gsap.from(headRef.current, {
+            opacity: 0,
+            scale: 0,
+            duration: 1.5,
+            ease: "bounce.out"
+
+        })
+    }, [])
+
+
+
+
+
     return (
         <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12 mt-10">
+                <div ref={headRef} className="text-center mb-12 mt-10">
                     <h2 className="text-4xl font-extrabold text-gray-900">
                         Meet Our <span className="text-indigo-600">Expert Mentors</span>
                     </h2>

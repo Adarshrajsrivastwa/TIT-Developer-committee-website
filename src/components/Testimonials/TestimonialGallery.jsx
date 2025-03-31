@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const StudentSkillCard = ({ student }) => {
   const cardRef = useRef(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     gsap.from(cardRef.current, {
@@ -15,22 +16,44 @@ const StudentSkillCard = ({ student }) => {
     });
   }, []);
 
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
   return (
     <div
       ref={cardRef}
-      className="bg-white rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+      className="bg-white rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl h-full flex flex-col relative"
     >
-      {/* Removed fixed height, letting content determine size */}
-      <div className="overflow-hidden bg-gray-200 relative">
+      <div
+        className="overflow-hidden bg-gray-200 h-48 relative"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <img
           src={student.image}
           alt={student.name}
-          className="w-full object-contain"
-        // Using object-contain instead of object-cover to preserve aspect ratio
-        // Removed fixed height to allow image to dictate container size
+          className="w-full h-full object-cover"
         />
+
+        {/* Full-size image overlay that appears on hover */}
+        {isHovering && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75" onClick={handleMouseLeave}>
+            <div className="relative max-w-4xl max-h-screen p-4">
+              <img
+                src={student.image}
+                alt={student.name}
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
+          </div>
+        )}
       </div>
-      <div className="p-6 bg-white">
+      <div className="p-6 bg-white flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-xl font-bold text-gray-800">{student.name}</h3>
           <span className="bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded">
@@ -38,7 +61,7 @@ const StudentSkillCard = ({ student }) => {
           </span>
         </div>
         <p className="text-gray-600 mb-4">{student.program}</p>
-        <div className="mb-4">
+        <div className="mb-4 mt-auto">
           <h4 className="text-sm font-semibold text-gray-700 mb-2">Skills</h4>
           <div className="flex flex-wrap gap-2">
             {student.skills.map((skill, idx) => (
@@ -286,11 +309,6 @@ const DevCommunityGallery = () => {
 
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-gray-300 py-8 px-6 text-center">
-        <p>© {new Date().getFullYear()} College Developer Community. All rights reserved.</p>
-      </footer>
     </div>
   );
 };
