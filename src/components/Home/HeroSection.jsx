@@ -1,5 +1,9 @@
 /* eslint-disable no-unused-vars */
+<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
+=======
+import React, { useEffect, useRef } from "react";
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ArrowRight } from "lucide-react";
@@ -10,6 +14,7 @@ import PhotoSlider from "./PhotoSlider";
 const HeroSection = () => {
     const heroRef = useRef(null);
     const typedRef = useRef(null);
+<<<<<<< HEAD
     const photoRef = useRef(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -18,6 +23,8 @@ const HeroSection = () => {
         "/assets/img/mentor-img/Ankit-Kumar.jpeg",
         "/assets/img/mentor-img/Ankit-Patel.jpeg",
     ];
+=======
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
 
     useEffect(() => {
         const heroElements = heroRef.current.querySelectorAll('.animate-element');
@@ -26,22 +33,33 @@ const HeroSection = () => {
             heroElements,
             {
                 opacity: 0,
+<<<<<<< HEAD
                 y: 0,
                 scale: 0,
+=======
+                y: 50,
+                scale: 0.9,
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
             },
             {
                 opacity: 1,
                 y: 0,
                 scale: 1,
                 stagger: 0.2,
+<<<<<<< HEAD
                 duration: 2,
                 ease: "elastic.out",
                 onComplete: () => setIsLoaded(true)
+=======
+                duration: 1,
+                ease: "power3.out",
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
             }
         );
     }, []);
 
     useEffect(() => {
+<<<<<<< HEAD
         if (isLoaded) {
             const circles = document.querySelectorAll('.bg-circle');
 
@@ -59,6 +77,8 @@ const HeroSection = () => {
     }, [isLoaded]);
 
     useEffect(() => {
+=======
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
         const typed = new Typed(typedRef.current, {
             strings: [
                 "<span class='font-bold text-gray-900'>Empowering Juniors, Led by Seniors</span>",
@@ -81,6 +101,7 @@ const HeroSection = () => {
     return (
         <div
             ref={heroRef}
+<<<<<<< HEAD
             className="relative max-h-screen flex flex-col items-center
             px-6 md:px-12 overflow-hidden text-center md:text-left mt-20"
         >
@@ -121,6 +142,17 @@ const HeroSection = () => {
             </div>
 
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center mt-4 z-10">
+=======
+            className="relative min-h-screen flex flex-col items-center
+            px-6 md:px-12 overflow-hidden text-center md:text-left mt-20"
+        >
+            {/* Photo Slider for Mobile */}
+            <div className="block md:hidden w-full max-w-md mx-auto mb-2">
+                <PhotoSlider />
+            </div>
+
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center mt-4">
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
                 {/* Left Content */}
                 <div className="space-y-6 md:pr-12">
                     <h1
@@ -149,7 +181,11 @@ const HeroSection = () => {
                 </div>
 
                 {/* Right Content - Photo Slider (Only for Desktop) */}
+<<<<<<< HEAD
                 <div className="hidden md:block mt-0 z-10">
+=======
+                <div className="hidden md:block mt-0">
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
                     <PhotoSlider />
                 </div>
             </div>
@@ -157,4 +193,8 @@ const HeroSection = () => {
     );
 };
 
+<<<<<<< HEAD
 export default HeroSection;
+=======
+export default HeroSection;
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a

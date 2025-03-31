@@ -7,13 +7,21 @@ import About from './pages/About';
 import Mentors from './pages/Mentors';
 import Events from './pages/Events';
 import HallOfFame from './pages/HallOfFame';
+<<<<<<< HEAD
 import Testimonials from './pages/Testimonials';
+=======
+// import Testimonials from './pages/Testimonials';
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
 import JoinUs from './pages/JoinUs';
 
 function App() {
   return (
     <Router>
+<<<<<<< HEAD
       <div className="min-h-screen flex flex-col bg-gray-100">
+=======
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-purple-50">
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,7 +29,11 @@ function App() {
           <Route path="/mentors" element={<Mentors />} />
           <Route path="/events" element={<Events />} />
           <Route path="/hall-of-fame" element={<HallOfFame />} />
+<<<<<<< HEAD
           <Route path="/testimonials" element={<Testimonials />} />
+=======
+          {/* <Route path="/testimonials" element={<Testimonials />} /> */}
+>>>>>>> 76815532f334497bdcc5bb589651b1f08b3e938a
           <Route path="/join-us" element={<JoinUs />} />
         </Routes>
         {/* <Footer /> */}
