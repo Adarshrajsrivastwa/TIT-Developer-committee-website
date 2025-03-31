@@ -62,8 +62,6 @@ npm run dev
 
 ## 📂 File Structure  
 client/                 # Frontend (Vite + React)
-│── public/             
-│   ├── assets/         # Static assets (images, videos, etc.)
 │── src/
 │   ├── components/     # Reusable UI components
 │   ├── pages/          # Page components
