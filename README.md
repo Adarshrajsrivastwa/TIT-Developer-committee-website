@@ -55,10 +55,14 @@ git clone https://github.com/Adarshrajsrivastwa/TIT-Developer-committee-website.
 cd TIT-Developer-committee-website  
 
 ### 📦 Install Dependencies  
-npm install  
+```
+npm install
+```  
 
-### 🚀 Run the Project  
+### 🚀 Run the Project
+```
 npm run dev  
+```
 
 ## 📂 File Structure  
 ```
