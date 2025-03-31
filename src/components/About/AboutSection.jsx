@@ -13,8 +13,45 @@ import {
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
+// Utility function to split plain text into words wrapped in spans
+const splitTextToSpans = (element) => {
+    if (!element) return;
+    const text = element.textContent;
+    const words = text.split(' ');
+    element.innerHTML = words.map(word => `<span class="word" style="display: inline-block;">${word}</span>`).join(' ');
+};
+
+// Utility function to split text nodes into words while preserving HTML
+const splitTextNodesToSpans = (element) => {
+    if (!element) return;
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+    const nodes = [];
+    let node;
+    while ((node = walker.nextNode())) {
+        nodes.push(node);
+    }
+    nodes.forEach((textNode) => {
+        const text = textNode.nodeValue;
+        const words = text.split(' ');
+        const spanContainer = document.createDocumentFragment();
+        words.forEach((word, index) => {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.style.display = 'inline-block';
+            span.textContent = word;
+            spanContainer.appendChild(span);
+            if (index < words.length - 1) {
+                spanContainer.appendChild(document.createTextNode(' '));
+            }
+        });
+        textNode.parentNode.replaceChild(spanContainer, textNode);
+    });
+};
+
+// WhyJoinSection Component
 const WhyJoinSection = () => {
     const sectionRef = useRef(null);
+    const headingRef = useRef(null);
     const benefitsRef = useRef([]);
 
     const benefits = [
@@ -42,7 +79,36 @@ const WhyJoinSection = () => {
 
     useEffect(() => {
         const section = sectionRef.current;
+        const heading = headingRef.current;
         const benefits = benefitsRef.current;
+
+
+        // Split heading text into words
+        splitTextToSpans(heading);
+
+        // After splitting, find words to color
+        heading.querySelectorAll('.word').forEach(word => {
+            if (word.textContent === 'Join') {
+                word.style.color = '#4f46e5';
+            }
+        });
+
+        // Animate words in the heading
+        gsap.fromTo(
+            heading.querySelectorAll('.word'),
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
 
         // Scroll-triggered animation for the entire section
         gsap.fromTo(
@@ -55,7 +121,7 @@ const WhyJoinSection = () => {
                 scrollTrigger: {
                     trigger: section,
                     start: 'top 90%',
-                    toggleActions: 'play none none reverse'
+                    toggleActions: 'play none none none'
                 }
             }
         );
@@ -64,11 +130,7 @@ const WhyJoinSection = () => {
         benefits.forEach((benefit, index) => {
             gsap.fromTo(
                 benefit,
-                {
-                    opacity: 0,
-                    x: -50,
-                    scale: 0.9
-                },
+                { opacity: 0, x: -50, scale: 0.9 },
                 {
                     opacity: 1,
                     x: 0,
@@ -78,7 +140,7 @@ const WhyJoinSection = () => {
                     scrollTrigger: {
                         trigger: section,
                         start: 'top 80%',
-                        toggleActions: 'play none none reverse'
+                        toggleActions: 'play none none none'
                     }
                 }
             );
@@ -86,14 +148,11 @@ const WhyJoinSection = () => {
     }, []);
 
     return (
-        <section
-            ref={sectionRef}
-            className="bg-white py-16 px-4"
-        >
+        <section ref={sectionRef} className="py-16 px-4">
             <div className="container mx-auto">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
-                        Why <span className="text-indigo-600">Join</span> Us?
+                    <h2 ref={headingRef} className="text-4xl font-extrabold text-gray-900 mb-4">
+                        Why <span>Join</span> Us?
                     </h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                         Transform your technical journey with our comprehensive community support
@@ -105,24 +164,15 @@ const WhyJoinSection = () => {
                         <div
                             key={index}
                             ref={el => benefitsRef.current[index] = el}
-                            className="bg-gray-50 rounded-2xl p-6 
-                border border-gray-100 
-                hover:shadow-xl 
-                transition-all duration-300 
-                transform hover:-translate-y-2 
-                group"
+                            className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
                         >
                             <div className="flex items-center mb-4">
                                 <div className="mr-4 bg-white p-3 rounded-full shadow-md">
                                     {benefit.icon}
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-800">
-                                    {benefit.title}
-                                </h3>
+                                <h3 className="text-2xl font-bold text-gray-800">{benefit.title}</h3>
                             </div>
-                            <p className="text-gray-600">
-                                {benefit.description}
-                            </p>
+                            <p className="text-gray-600">{benefit.description}</p>
                         </div>
                     ))}
                 </div>
@@ -131,8 +181,10 @@ const WhyJoinSection = () => {
     );
 };
 
+// MissionSection Component
 const MissionSection = () => {
     const sectionRef = useRef(null);
+    const headingRef = useRef(null);
     const statsRef = useRef([]);
 
     const stats = [
@@ -155,7 +207,28 @@ const MissionSection = () => {
 
     useEffect(() => {
         const section = sectionRef.current;
+        const heading = headingRef.current;
         const stats = statsRef.current;
+
+        // Split heading text into words
+        splitTextToSpans(heading);
+
+        // Animate words in the heading
+        gsap.fromTo(
+            heading.querySelectorAll('.word'),
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
 
         // Background animation
         gsap.fromTo(
@@ -174,11 +247,7 @@ const MissionSection = () => {
         stats.forEach((stat, index) => {
             gsap.fromTo(
                 stat,
-                {
-                    opacity: 0,
-                    scale: 0.8,
-                    y: 50
-                },
+                { opacity: 0, scale: 0.8, y: 50 },
                 {
                     opacity: 1,
                     scale: 1,
@@ -188,7 +257,7 @@ const MissionSection = () => {
                     scrollTrigger: {
                         trigger: section,
                         start: 'top 80%',
-                        toggleActions: 'play none none reverse'
+                        toggleActions: 'play none none none'
                     }
                 }
             );
@@ -198,11 +267,10 @@ const MissionSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
-        bg-size-200 text-white py-16 px-4"
+            className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-16 px-4"
         >
             <div className="container mx-auto text-center">
-                <h2 className="text-4xl font-extrabold mb-8">
+                <h2 ref={headingRef} className="text-4xl font-extrabold mb-8">
                     Our Impact in Numbers
                 </h2>
                 <div className="grid md:grid-cols-3 gap-8">
@@ -210,10 +278,7 @@ const MissionSection = () => {
                         <div
                             key={index}
                             ref={el => statsRef.current[index] = el}
-                            className="bg-white/10 backdrop-blur-sm 
-                rounded-2xl p-6 
-                hover:bg-white/20 
-                transition-all duration-300"
+                            className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
                         >
                             <div className="flex justify-center items-center mb-4">
                                 {stat.icon}
@@ -230,36 +295,94 @@ const MissionSection = () => {
     );
 };
 
+// AboutComp Component
 const AboutComp = () => {
-    return (
-        <div className="bg-gray-50">
-            <header className="bg-white py-16 mt-10">
-                <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center">
+    const sectionRef = useRef(null);
+    const headingRef = useRef(null);
+    const textContainerRef = useRef(null);
 
+    useEffect(() => {
+        const section = sectionRef.current;
+        const heading = headingRef.current;
+        const textContainer = textContainerRef.current;
+
+        // Split heading text into words
+        splitTextToSpans(heading);
+
+        // After splitting, find "TIT", "Developer", "Community" words and color them
+        heading.querySelectorAll('.word').forEach(word => {
+            if (word.textContent === 'TIT' || word.textContent === 'Developer' || word.textContent === 'Community') {
+                word.style.color = '#4f46e5';
+            }
+        });
+
+        // Animate words in the heading
+        gsap.fromTo(
+            heading.querySelectorAll('.word'),
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                }
+            }
+        );
+
+        // Animate the paragraphs
+        const paragraphs = textContainer.querySelectorAll('p');
+        paragraphs.forEach((paragraph) => {
+            splitTextNodesToSpans(paragraph);
+            gsap.fromTo(
+                paragraph.querySelectorAll('.word'),
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    delay: 0.5,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: paragraph,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+    }, []);
+
+    return (
+        <div className="bg-gray-100">
+            <header ref={sectionRef} className="bg-gray-100 py-16 mt-10">
+                <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center">
                     {/* Text Section */}
-                    <div className="md:w-1/2 text-center md:text-left">
-                        <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
-                            About <span className="text-indigo-600">TIT Developer Community</span>
+                    <div ref={textContainerRef} className="md:w-1/2 text-center md:text-left">
+                        <h1 ref={headingRef} className="text-3xl md:text-5xl font-extrabold mb-10 md:mb-10">
+                            <span className="text-gray-900">About</span>{' '}
+                            <span>TIT Developer Community</span>
                         </h1>
                         <p className="text-xl text-gray-600 max-w-2xl">
                             A student-led initiative bridging the gap between juniors and seniors through free mentorship and hands-on learning.
-                        </p>
-                        <br />
-                        <p className="text-xl text-gray-600 max-w-2xl">
+                            <br />
+                            <br />
                             <b className="text-indigo-600">Our mission:</b> Empower students with real-world knowledge, industry insights, and hands-on learning.
-                        </p>
-                        <br />
-                        <p className="text-xl text-gray-600 max-w-2xl">
+                            <br />
+                            <br />
                             We offer guidance through mentorship programs, hackathons, and workshops to help students succeed in the tech industry.
                         </p>
                     </div>
 
                     {/* Image Section */}
-                    <div className="md:w-1/2 flex justify-center">
+                    <div className=" w-72 md:w-1/2 flex justify-center">
                         <img
                             src="/assets/img/about-img/about.svg"
                             alt="Developer Community"
-                            className="w-full max-w-md md:max-w-lg rounded-lg"
+                            className="w-full max-w-md md:max-w-lg rounded-lg mb-20 md:mb-0"
                         />
                     </div>
                 </div>
@@ -270,6 +393,5 @@ const AboutComp = () => {
         </div>
     );
 };
-
 
 export default AboutComp;

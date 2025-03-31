@@ -72,7 +72,7 @@ const ImpactSection = () => {
     ];
 
     return (
-        <div className="py-20 bg-white">
+        <div className="py-10 mt-20">
             <div className="container mx-auto px-6">
                 <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
                     Our Impact by the Numbers
@@ -85,7 +85,7 @@ const ImpactSection = () => {
                     {impactStats.map((item, index) => (
                         <div
                             key={index}
-                            className="bg-gray-100 p-6 rounded-xl shadow-md text-center 
+                            className="bg-white p-6 rounded-xl text-center 
                          transform transition-all duration-300 
                          hover:scale-105 hover:shadow-lg"
                         >

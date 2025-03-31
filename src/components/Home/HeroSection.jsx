@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ArrowRight } from "lucide-react";
@@ -10,6 +10,14 @@ import PhotoSlider from "./PhotoSlider";
 const HeroSection = () => {
     const heroRef = useRef(null);
     const typedRef = useRef(null);
+    const photoRef = useRef(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    const circleImages = [
+        "/assets/img/mentor-img/Anand-Soni.jpeg",
+        "/assets/img/mentor-img/Ankit-Kumar.jpeg",
+        "/assets/img/mentor-img/Ankit-Patel.jpeg",
+    ];
 
     useEffect(() => {
         const heroElements = heroRef.current.querySelectorAll('.animate-element');
@@ -18,19 +26,37 @@ const HeroSection = () => {
             heroElements,
             {
                 opacity: 0,
-                y: 50,
-                scale: 0.9,
+                y: 0,
+                scale: 0,
             },
             {
                 opacity: 1,
                 y: 0,
                 scale: 1,
                 stagger: 0.2,
-                duration: 1,
-                ease: "power3.out",
+                duration: 2,
+                ease: "elastic.out",
+                onComplete: () => setIsLoaded(true)
             }
         );
     }, []);
+
+    useEffect(() => {
+        if (isLoaded) {
+            const circles = document.querySelectorAll('.bg-circle');
+
+            gsap.to(circles, {
+                x: "random(-50, 50, 5)",
+                y: "random(-50, 50, 5)",
+                rotation: "random(0, 15, 5)",
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                stagger: 0.5
+            });
+        }
+    }, [isLoaded]);
 
     useEffect(() => {
         const typed = new Typed(typedRef.current, {
@@ -55,15 +81,46 @@ const HeroSection = () => {
     return (
         <div
             ref={heroRef}
-            className="relative min-h-screen flex flex-col items-center
+            className="relative max-h-screen flex flex-col items-center
             px-6 md:px-12 overflow-hidden text-center md:text-left mt-20"
         >
+            {/* Background Circles with Images (Only for Desktop) */}
+            <div className="hidden md:block absolute inset-0 overflow-hidden -z-10">
+                {circleImages.map((img, index) => {
+                    const size = 100 + index * 20;
+                    const top = index % 2 === 0 ? Math.min(75, Math.max(10, 15 + index * 10)) : Math.min(80, Math.max(20, 65 - index * 10));
+                    const left = Math.min(85, Math.max(5, (index * 20) % 90));
+
+                    return (
+                        <div
+                            key={index}
+                            className={`bg-circle absolute rounded-full overflow-hidden 
+                           shadow-lg opacity-40 hover:opacity-60 transition-opacity
+                           border-2 border-indigo-100`}
+                            style={{
+                                width: `${size}px`,
+                                height: `${size}px`,
+                                top: `${top}%`,
+                                left: `${left}%`,
+                                zIndex: -5
+                            }}
+                        >
+                            <img
+                                src={img}
+                                alt="Background element"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    );
+                })}
+            </div>
+
             {/* Photo Slider for Mobile */}
-            <div className="block md:hidden w-full max-w-md mx-auto mb-2">
+            <div className="block md:hidden w-full max-w-md mx-auto mb-2 z-10">
                 <PhotoSlider />
             </div>
 
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center mt-4">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 items-center mt-4 z-10">
                 {/* Left Content */}
                 <div className="space-y-6 md:pr-12">
                     <h1
@@ -92,7 +149,7 @@ const HeroSection = () => {
                 </div>
 
                 {/* Right Content - Photo Slider (Only for Desktop) */}
-                <div className="hidden md:block mt-0">
+                <div className="hidden md:block mt-0 z-10">
                     <PhotoSlider />
                 </div>
             </div>

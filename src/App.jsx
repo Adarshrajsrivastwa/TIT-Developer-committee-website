@@ -7,13 +7,13 @@ import About from './pages/About';
 import Mentors from './pages/Mentors';
 import Events from './pages/Events';
 import HallOfFame from './pages/HallOfFame';
-// import Testimonials from './pages/Testimonials';
+import Testimonials from './pages/Testimonials';
 import JoinUs from './pages/JoinUs';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-purple-50">
+      <div className="min-h-screen flex flex-col bg-gray-100">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,7 +21,7 @@ function App() {
           <Route path="/mentors" element={<Mentors />} />
           <Route path="/events" element={<Events />} />
           <Route path="/hall-of-fame" element={<HallOfFame />} />
-          {/* <Route path="/testimonials" element={<Testimonials />} /> */}
+          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/join-us" element={<JoinUs />} />
         </Routes>
         {/* <Footer /> */}
