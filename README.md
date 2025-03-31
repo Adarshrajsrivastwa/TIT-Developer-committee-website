@@ -44,7 +44,8 @@ The *TIT Developer Community Website* is a *static web platform* designed to sho
 ## 🛠 Tech Stack  
 🚀 *Frontend* – React.js + Tailwind CSS  
 🚀 *Deployment* – Vercel  
-🚀 *Animations* – Smooth page transitions & scroll effects  
+🚀 *Animations* – Smooth page transitions & scroll effects 
+🚀 *Cloudinary* – As a cloud storage 
 
 
 ## 🏗 Project Setup  

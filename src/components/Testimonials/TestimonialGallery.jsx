@@ -175,7 +175,7 @@ const DevCommunityGallery = () => {
             className="w-64 h-64 rounded-lg overflow-hidden"
           >
             <img
-              src="/assets/img/testimonial-img/testimonial.svg"
+              src="https://res.cloudinary.com/dltyctci9/image/upload/v1743436977/fame_ck3mru.svg"
               alt="Developer Community"
               className="w-full h-full object-cover"
             />
