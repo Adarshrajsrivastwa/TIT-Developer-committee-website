@@ -61,6 +61,7 @@ npm install
 npm run dev  
 
 ## 📂 File Structure  
+```
 client/                 # Frontend (Vite + React)
 │── src/
 │   ├── components/     # Reusable UI components
@@ -76,6 +77,7 @@ client/                 # Frontend (Vite + React)
 │── README.md
 │── vite.config.js
 
+```
 
 
 ////////////////////////////////////////////////////////////////
