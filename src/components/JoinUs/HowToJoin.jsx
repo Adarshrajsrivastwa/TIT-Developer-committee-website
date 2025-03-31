@@ -42,7 +42,7 @@ const JoinPathways = [
       "Mentorship Opportunities"
     ],
     icon: <TrophyIcon className="text-blue-500" />,
-    formLink: "/forms/hackathon-recruitment"
+    formLink: "https://forms.gle/HtDsmipULHYzFbL4A"
   }
 ];
 
