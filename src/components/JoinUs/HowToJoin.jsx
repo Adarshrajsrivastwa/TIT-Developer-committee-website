@@ -93,7 +93,7 @@ const HowToJoin = () => {
           {/* Image Section */}
           <div className="md:w-1/2 flex justify-center">
             <img
-              src="/assets/img/joinUs-img/join-us.svg"
+              src="https://res.cloudinary.com/dltyctci9/image/upload/v1743437158/join-us_uxcsgn.svg"
               alt="Join Community"
               className="w-full max-w-md md:max-w-lg rounded-lg"
             />

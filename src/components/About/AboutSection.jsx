@@ -380,7 +380,7 @@ const AboutComp = () => {
                     {/* Image Section */}
                     <div className=" w-72 md:w-1/2 flex justify-center">
                         <img
-                            src="/assets/img/about-img/about.svg"
+                            src="https://res.cloudinary.com/dltyctci9/image/upload/v1743400481/buwmxwhjlpdithdaa1bl.svg"
                             alt="Developer Community"
                             className="w-full max-w-md md:max-w-lg rounded-lg mb-20 md:mb-0"
                         />

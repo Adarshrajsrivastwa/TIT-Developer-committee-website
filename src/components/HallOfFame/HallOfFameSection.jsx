@@ -31,7 +31,7 @@ const hallOfFameData = [
                     '5+ projects',
                     '4+ certifications'
                 ],
-                image: '/assets/img/fame-img/student-img/Dipu-Kumar.png'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436540/Dipu-Kumar_aoq859.png'
             },
             {
                 name: 'Aryan Sharma',
@@ -41,7 +41,7 @@ const hallOfFameData = [
                     '5+ hackathons',
                     'Play Store deployments'
                 ],
-                image: '/assets/img/fame-img/student-img/Aryan-Sharma.jpg'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436536/Aryan_llmi2k.jpg'
             }
         ]
     },
@@ -55,7 +55,7 @@ const hallOfFameData = [
                     '5+ major projects',
                     'SIH 2024 Finalist'
                 ],
-                image: '/assets/img/fame-img/student-img/Aman-Mishra.jpg'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436540/Aman-Mishra_uougsv.jpg'
             },
             {
                 name: 'Deepika Deshmukh',
@@ -64,7 +64,7 @@ const hallOfFameData = [
                     '10+ projects',
                     '5+ hackathons'
                 ],
-                image: '/assets/img/fame-img/student-img/Deepika-Deshmukh.jpg'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436537/Deepika-Deshmukh_pddfvy.jpg'
             }
         ]
     },
@@ -78,7 +78,7 @@ const hallOfFameData = [
                     '10+ projects',
                     'SIH 2024 Finalist'
                 ],
-                image: '/assets/img/fame-img/student-img/Prakhar-Shrivastava.jpg'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436545/Prakhar-Shrivastava_nv2qru.jpg'
             },
             {
                 name: 'Naman Kumar',
@@ -87,7 +87,7 @@ const hallOfFameData = [
                     '5+ projects',
                     'Secured internship'
                 ],
-                image: '/assets/img/fame-img/student-img/Naman-Kumar.jpg'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436552/Naman-Kumar_bmlngv.jpg'
             }
         ]
     },
@@ -101,7 +101,7 @@ const hallOfFameData = [
                     '3+ projects',
                     'ATS-optimized resume'
                 ],
-                image: '/assets/img/fame-img/student-img/Akash-Kumar.jpeg'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436535/Akash-Kumar_zoq1sk.jpg'
             },
             {
                 name: 'Mohd Meraaz',
@@ -109,7 +109,7 @@ const hallOfFameData = [
                 achievements: [
                     'Successfully completed cybersecurity training'
                 ],
-                image: '/assets/img/fame-img/student-img/Mohd-Meraaz.jpg'
+                image: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743436557/Mohd-Meraaz_r9nh6n.jpg'
             }
         ]
     }
@@ -283,7 +283,7 @@ const HallOfFameSection = () => {
                         {/* Right-side Image */}
                         <div ref={imageRef} className="w-48 h-48 mt-6 md:mt-0 origin-center">
                             <img
-                                src="/assets/img/fame-img/fame.svg"
+                                src="https://res.cloudinary.com/dltyctci9/image/upload/v1743436977/fame_ck3mru.svg"
                                 alt="Hall of Fame"
                                 className="w-full h-full object-cover"
                             />

@@ -5,18 +5,18 @@ import { LinkedinIcon, AwardIcon, User } from 'lucide-react';
 const mentors = [
     {
         name: "Ankit Kumar",
-        image: "/assets/img/mentor-img/Ankit-Kumar.jpeg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436100/Ankit-Kumar_dp4slh.jpg",
         expertise: "Full Stack Development",
         linkedin: "https://www.linkedin.com/in/ankitkumar0905/",
         description: "Tech innovator bridging learning gaps with cutting-edge solutions",
         achievements: [
             "Lead Developer at Tech Startup",
-            "5+ Years Industry Experience"
+            "ML Consultant"
         ]
     },
     {
         name: "Anand Soni",
-        image: "/assets/img/mentor-img/Anand-Soni.jpeg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436100/Anand-Soni_vlikvb.jpg",
         expertise: "Machine Learning",
         linkedin: "https://www.linkedin.com/in/anandsoni992/",
         description: "AI researcher transforming complex problems into intelligent solutions",
@@ -27,7 +27,7 @@ const mentors = [
     },
     {
         name: "Ankit Patel",
-        image: "/assets/img/mentor-img/Ankit-Patel.jpeg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436100/Ankit-Patel_z3ngki.jpg",
         expertise: "Cybersecurity",
         linkedin: "https://www.linkedin.com/in/ankit-patel-563b9927b/",
         description: "Cybersecurity expert fortifying digital landscapes with innovative strategies",

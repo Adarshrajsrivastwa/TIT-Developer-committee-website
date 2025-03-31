@@ -14,9 +14,9 @@ const HeroSection = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const circleImages = [
-        "/assets/img/mentor-img/Anand-Soni.jpeg",
-        "/assets/img/mentor-img/Ankit-Kumar.jpeg",
-        "/assets/img/mentor-img/Ankit-Patel.jpeg",
+        "https://res.cloudinary.com/dltyctci9/image/upload/v1743436100/Anand-Soni_vlikvb.jpg",
+        "https://res.cloudinary.com/dltyctci9/image/upload/v1743436100/Ankit-Kumar_dp4slh.jpg",
+        "https://res.cloudinary.com/dltyctci9/image/upload/v1743436100/Ankit-Patel_z3ngki.jpg",
     ];
 
     useEffect(() => {

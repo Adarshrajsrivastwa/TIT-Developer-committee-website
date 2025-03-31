@@ -97,7 +97,7 @@ const EventsList = () => {
           {/* Image Section */}
           <div className="md:w-1/2 flex justify-center">
             <img
-              src="/assets/img/event-img/event.svg"
+              src="https://res.cloudinary.com/dltyctci9/image/upload/v1743436455/event_zuglf9.svg"
               alt="Upcoming Events"
               className="w-full max-w-md md:max-w-lg rounded-lg"
             />

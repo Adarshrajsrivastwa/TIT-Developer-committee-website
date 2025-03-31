@@ -4,7 +4,7 @@ const students = [
         name: "Sarthak Kumar",
         enrollmentNumber: "0191CS231234",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Sarthak-Kumar.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436544/Sarthak-Kumar_fpzqde.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -12,7 +12,7 @@ const students = [
         name: "Mohd Meraaz",
         enrollmentNumber: "0191AL221090",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Mohd-Meraaz.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436557/Mohd-Meraaz_r9nh6n.jpg",
         skills: ["Cyber", "Android"],
     },
     {
@@ -20,7 +20,7 @@ const students = [
         name: "Siddharth Kumar",
         enrollmentNumber: "0192CS231193",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Siddharth-Kumar.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436547/Siddharth-Kumar_tuxfyc.jpg",
         skills: ["Android"],
     },
     {
@@ -28,7 +28,7 @@ const students = [
         name: "Aryan Sharma",
         enrollmentNumber: "0192CS231051",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Aryan.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436536/Aryan_llmi2k.jpg",
         skills: ["Cyber", "Android"],
     },
     {
@@ -36,7 +36,7 @@ const students = [
         name: "Nikhil Kumar Gupta",
         enrollmentNumber: "0191CS231171",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Nikhil-Kumar-gupta.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436542/Nikhil-Kumar-gupta_aqtqlx.jpg",
         skills: ["ML", "Cyber"],
     },
     {
@@ -44,7 +44,7 @@ const students = [
         name: "Rishabh Raj",
         enrollmentNumber: "0111T231100",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Rishabh-Raj.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436543/Rishabh-Raj_ti68wc.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -52,7 +52,7 @@ const students = [
         name: "Naman Kumar",
         enrollmentNumber: "0191CS231137",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Naman-Kumar.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436552/Naman-Kumar_bmlngv.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -60,7 +60,7 @@ const students = [
         name: "Rohit Tiwari",
         enrollmentNumber: "0111CS231111",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Rohit-Tiwari.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436543/Rohit-Tiwari_pwhjkt.jpg",
         skills: ["ML", "Web Dev"],
     },
     {
@@ -68,7 +68,7 @@ const students = [
         name: "Om Prakash Mehta",
         enrollmentNumber: "0191CS231177",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Om-Prakash.png",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436542/Om-Prakash_si22kt.png",
         skills: ["Cyber"],
     },
     {
@@ -76,7 +76,7 @@ const students = [
         name: "Shashank Kumar",
         enrollmentNumber: "0111AL231244",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Shashank-Agrawal.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436546/Shashank-Agrawal_ohm4kc.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -84,7 +84,7 @@ const students = [
         name: "Anikesh Sharma",
         enrollmentNumber: "0191CS231044",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Anikesh-Sharma.png",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436540/Anikesh-Sharma_otngh4.png",
         skills: ["ML"],
     },
     {
@@ -92,7 +92,7 @@ const students = [
         name: "Sheetal Kawadkar",
         enrollmentNumber: "0191AL221162",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Sheetal-Kawadkar.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436547/Sheetal-Kawadkar_vyrj80.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -100,7 +100,7 @@ const students = [
         name: "Dipu Kumar",
         enrollmentNumber: "0191CS231111",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Dipu-Kumar.png",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436540/Dipu-Kumar_aoq859.png",
         skills: ["Cyber", "Android"],
     },
     {
@@ -108,7 +108,7 @@ const students = [
         name: "Shaloni Mishra",
         enrollmentNumber: "0191AL221160",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/shaloni-mishra.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436546/shaloni-mishra_irpldl.jpg",
         skills: ["ML", "Web Dev"],
     },
     {
@@ -116,7 +116,7 @@ const students = [
         name: "Aditi Gupta",
         enrollmentNumber: "0192CS221010",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Aditi-Gupta.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436534/Aditi-Gupta_y1jaw5.jpg",
         skills: ["Cyber", "Android"],
     },
     {
@@ -124,7 +124,7 @@ const students = [
         name: "Neetesh Chaurasia",
         enrollmentNumber: "0111A231075",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Neetesh-Chaurasia.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436541/Neetesh-Chaurasia_v7slff.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -132,7 +132,7 @@ const students = [
         name: "Prince Kumar",
         enrollmentNumber: "0191CS231198",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Prince-Kumar.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436543/Prince-Kumar_ibthcw.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -140,7 +140,7 @@ const students = [
         name: "Shivam Kumar Tiwari",
         enrollmentNumber: "0111CS231132",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Shivam-Tiwari.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436547/Shivam-Tiwari_b629wk.jpg",
         skills: ["ML", "Web Dev", "Cyber"],
     },
     {
@@ -148,7 +148,7 @@ const students = [
         name: "Harshit Anand",
         enrollmentNumber: "0191CS221090",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Harshit-Anandd.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436554/Harshit-Anandd_epabbj.jpg",
         skills: ["Web Dev", "Cyber", "Android"],
     },
     {
@@ -156,7 +156,7 @@ const students = [
         name: "Akash Kumar",
         enrollmentNumber: "0191CS231029",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Akash-Kumar.jpeg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436535/Akash-Kumar_zoq1sk.jpg",
         skills: ["Cyber"],
     },
     {
@@ -164,7 +164,7 @@ const students = [
         name: "Ananya Gupta",
         enrollmentNumber: "0191AL221019",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Ananya-Gupta.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436535/Ananya-Gupta_vdc2dn.jpg",
         skills: ["Web Dev"],
     },
     {
@@ -172,7 +172,7 @@ const students = [
         name: "Yashraj Chouhan",
         enrollmentNumber: "0191AL221204",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Yashraj-Chouhan.png",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436548/Yashraj-Chouhan_sk01zl.png",
         skills: ["Cyber"],
     },
     {
@@ -180,7 +180,7 @@ const students = [
         name: "Sejal Tiwari",
         enrollmentNumber: "1091CS231241",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Sejal-Tiwari.png",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436546/Sejal-Tiwari_xfhgyr.png",
         skills: ["ML", "Web Dev", "Cyber", "Android"],
     },
     {
@@ -188,7 +188,7 @@ const students = [
         name: "Aman Mishra",
         enrollmentNumber: "0191CS231034",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Aman-Mishra.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436540/Aman-Mishra_uougsv.jpg",
         skills: ["ML"],
     },
     {
@@ -196,7 +196,7 @@ const students = [
         name: "Prakhar Shrivastava",
         enrollmentNumber: "0191CS231189",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Prakhar-Shrivastava.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436545/Prakhar-Shrivastava_nv2qru.jpg",
         skills: ["ML", "Web Dev", "Cyber"],
     },
     {
@@ -204,7 +204,7 @@ const students = [
         name: "Deepika Deshmukh",
         enrollmentNumber: "0192AL221028",
         program: "Web Development, 2nd Year",
-        image: "/assets/img/testimonial-img/student-img/Deepika-Deshmukh.jpg",
+        image: "https://res.cloudinary.com/dltyctci9/image/upload/v1743436537/Deepika-Deshmukh_pddfvy.jpg",
         skills: ["ML", "Web Dev"],
     }
 ];

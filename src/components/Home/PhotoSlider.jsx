@@ -4,17 +4,17 @@ import { gsap } from 'gsap';
 const PhotoSlider = () => {
     // Sample photo data - replace with your actual images
     const photos = [
-        { id: 1, url: '/assets/img/home-img/event-1.jpeg', alt: 'Photo 1' },
-        { id: 2, url: '/assets/img/home-img/event-2.jpeg', alt: 'Photo 2' },
-        { id: 3, url: '/assets/img/home-img/event-3.jpeg', alt: 'Photo 3' },
-        { id: 4, url: '/assets/img/home-img/event-4.jpeg', alt: 'Photo 4' },
-        { id: 5, url: '/assets/img/home-img/event-5.jpeg', alt: 'Photo 5' },
-        { id: 6, url: '/assets/img/home-img/event-6.jpeg', alt: 'Photo 6' },
-        { id: 7, url: '/assets/img/home-img/event-7.jpeg', alt: 'Photo 7' },
-        { id: 8, url: '/assets/img/home-img/event-8.jpeg', alt: 'Photo 8' },
-        { id: 9, url: '/assets/img/home-img/event-9.jpeg', alt: 'Photo 9' },
-        { id: 10, url: '/assets/img/home-img/event-10.jpeg', alt: 'Photo 10' },
-        { id: 11, url: '/assets/img/home-img/event-11.jpeg', alt: 'Photo 11' },
+        { id: 1, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400687/dhrvsjoq3d8l6st70xpx.jpg', alt: 'Photo 1' },
+        { id: 2, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400683/rsteyaqckimki1uiikwx.jpg', alt: 'Photo 2' },
+        { id: 3, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400680/odxtqfjegyscjzjndvqz.jpg', alt: 'Photo 3' },
+        { id: 4, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400680/skkfjiudrcxzzroxluwx.jpg', alt: 'Photo 4' },
+        { id: 5, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400668/kujy1lxntjfj7apcbtoe.jpg', alt: 'Photo 5' },
+        { id: 6, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400668/dhitdwicoj2q9ded6giv.jpg', alt: 'Photo 6' },
+        { id: 7, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400663/nfubk1geth5p772hezji.jpg', alt: 'Photo 7' },
+        { id: 8, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400657/bjbkpxymncirsacx4o6l.jpg', alt: 'Photo 8' },
+        { id: 9, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400656/huqxp8zw2cxw9ldyl4ek.jpg', alt: 'Photo 9' },
+        { id: 10, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400656/w4dvwwidsspnpgpqfnzi.jpg', alt: 'Photo 10' },
+        { id: 11, url: 'https://res.cloudinary.com/dltyctci9/image/upload/v1743400640/jhdcqj882e1jupujwsou.jpg', alt: 'Photo 11' },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
