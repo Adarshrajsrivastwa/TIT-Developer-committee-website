@@ -86,10 +86,10 @@ const EventsList = () => {
 
           {/* Text Section */}
           <div className="md:w-1/2 text-center md:text-left">
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
+            <h1 className="text-4xl font-extrabold text-gray-900 mb-10 md:mb-6">
               Our <span className="text-indigo-600">Upcoming Events</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl">
+            <p className="text-xl text-gray-600 max-w-2xl mb-7 md:mb-0">
               Empowering tech enthusiasts through immersive learning experiences and cutting-edge workshops.
             </p>
           </div>
