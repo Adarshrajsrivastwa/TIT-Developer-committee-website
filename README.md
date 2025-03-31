@@ -51,8 +51,10 @@ The *TIT Developer Community Website* is a *static web platform* designed to sho
 ## 🏗 Project Setup  
 
 ### 📥 Clone the Repository  
+```
 git clone https://github.com/Adarshrajsrivastwa/TIT-Developer-committee-website.git  
 cd TIT-Developer-committee-website  
+```
 
 ### 📦 Install Dependencies  
 ```
