@@ -25,7 +25,7 @@ const Contact = () => {
     // Section fade-in animation
     gsap.fromTo(
       section,
-      { opacity: 0, y: 50 },
+      { opacity: 0, y: 0   },
       {
         opacity: 1,
         y: 0,
@@ -41,7 +41,7 @@ const Contact = () => {
     // Form slide-in animation
     gsap.fromTo(
       form,
-      { opacity: 0, x: -50 },
+      { opacity: 0, x: 0 },
       {
         opacity: 1,
         x: 0,
@@ -58,7 +58,7 @@ const Contact = () => {
     infos.forEach((info, index) => {
       gsap.fromTo(
         info,
-        { opacity: 0, x: 30 },
+        { opacity: 0, x: 0 },
         {
           opacity: 1,
           x: 0,
@@ -87,12 +87,12 @@ const Contact = () => {
 
   return (
     <section ref={sectionRef} className="bg-gray-100 py-16 mt-10">
-      <div className="container px-3">
+      <div className="mx-auto px-4 md:px-20">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-10">
           Contact <span className="text-indigo-600">Us</span>
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Contact Form */}
           <div ref={formRef} className="bg-white p-8 rounded-2xl shadow-lg">
             <form onSubmit={handleSubmit} className="space-y-6">
