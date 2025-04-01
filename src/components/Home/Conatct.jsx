@@ -25,7 +25,7 @@ const Contact = () => {
     // Section fade-in animation
     gsap.fromTo(
       section,
-      { opacity: 0, y: 0   },
+      { opacity: 0, y: 0 },
       {
         opacity: 1,
         y: 0,
@@ -86,18 +86,18 @@ const Contact = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-gray-100 py-16 mt-10">
+    <section ref={sectionRef} className="py-16 mt-10">
       <div className="mx-auto px-4 md:px-20">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-10">
-          Contact <span className="text-indigo-600">Us</span>
+        <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-gray-200 mb-10">
+          <span className="text-indigo-600">Contact </span> Us
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Contact Form */}
-          <div ref={formRef} className="bg-white p-8 rounded-2xl shadow-lg">
+          <div ref={formRef} className="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-gray-700 text-lg font-medium mb-2">
+                <label className="block text-gray-700 dark:text-gray-300 text-lg font-medium mb-2">
                   Name
                 </label>
                 <input
@@ -106,11 +106,11 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full p-3 dark:bg-gray-500 border border-gray-300 dark:border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-lg font-medium mb-2">
+                <label className="block text-gray-700 dark:text-gray-300 text-lg font-medium mb-2">
                   Email
                 </label>
                 <input
@@ -119,11 +119,11 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full p-3 dark:bg-gray-500 border border-gray-300 dark:border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-lg font-medium mb-2">
+                <label className="block text-gray-700 dark:text-gray-300 text-lg font-medium mb-2">
                   Message
                 </label>
                 <textarea
@@ -132,15 +132,18 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows="5"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full p-3 dark:bg-gray-500 border border-gray-300 dark:border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 ></textarea>
               </div>
+              <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-full bg-indigo-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-all"
+                className="w-1/2 bg-indigo-700 text-white py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-all"
               >
                 Send Message
               </button>
+              </div>
+
             </form>
           </div>
 
@@ -148,33 +151,33 @@ const Contact = () => {
           <div className="space-y-8">
             <div
               ref={(el) => (infoRefs.current[0] = el)}
-              className="flex items-center space-x-4 bg-white p-5 rounded-xl shadow-md"
+              className="flex items-center space-x-4 bg-white dark:bg-gray-700 p-5 rounded-xl shadow-md"
             >
               <Mail className="text-indigo-600" size={40} />
               <div>
-                <p className="text-lg font-semibold text-gray-800">Email</p>
-                <p className="text-gray-600">titdevelopercommunity@gmail.com</p>
+                <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">Email</p>
+                <p className="text-gray-600 dark:text-gray-400">titdevelopercommunity@gmail.com</p>
               </div>
             </div>
             <div
               ref={(el) => (infoRefs.current[1] = el)}
-              className="flex items-center space-x-4 bg-white p-5 rounded-xl shadow-md"
+              className="flex items-center space-x-4 bg-white dark:bg-gray-700 p-5 rounded-xl shadow-md"
             >
               <Phone className="text-green-500" size={40} />
               <div>
-                <p className="text-lg font-semibold text-gray-800">Phone</p>
-                <p className="text-gray-600">+919179730898</p>
-                <p className="text-gray-600">+917870793511</p>
+                <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">Phone</p>
+                <p className="text-gray-600 dark:text-gray-400">+919179730898</p>
+                <p className="text-gray-600 dark:text-gray-400">+917870793511</p>
               </div>
             </div>
             <div
               ref={(el) => (infoRefs.current[2] = el)}
-              className="flex items-center space-x-4 bg-white p-5 rounded-xl shadow-md">
+              className="flex items-center space-x-4 bg-white dark:bg-gray-700 p-5 rounded-xl shadow-md">
               < Instagram className="text-pink-400" size={40} />
               <Link to="https://www.instagram.com/titdevelopercommunity?igsh=MWpkdGF1ZXJuZG1qag==">
                 <div>
-                  <p className="text-lg font-semibold text-gray-800">Instagram</p>
-                  <p className="text-gray-600">TIT Developer Community</p>
+                  <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">Instagram</p>
+                  <p className="text-gray-600 dark:text-gray-400">TIT Developer Community</p>
                 </div>
               </Link>
             </div>

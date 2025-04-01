@@ -1,16 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { gsap } from "gsap";
+import { ThemeContext } from "../Theme/ThemeContext"; // Import ThemeContext
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext); // Use ThemeContext
     const location = useLocation();
     const currentPath = location.pathname;
 
     const logoRef = useRef(null);
     const joinButtonRef = useRef(null);
     const mobileMenuRef = useRef(null);
+    const toggleRef = useRef(null);
     const linkRefs = useRef([]);
     const initialLoadComplete = useRef(false);
 
@@ -68,12 +71,12 @@ const Navbar = () => {
             );
         }
 
-        // 3. Join Us button
-        if (joinButtonRef.current) {
+        // 3. Join Us button and toggle
+        if (joinButtonRef.current && toggleRef.current) {
             tl.fromTo(
-                joinButtonRef.current,
+                [joinButtonRef.current, toggleRef.current],
                 { opacity: 0, x: 50 },
-                { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" },
+                { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" },
                 "-=0.3"
             );
         }
@@ -109,7 +112,9 @@ const Navbar = () => {
 
                 // Create underline element
                 const underline = document.createElement("span");
-                underline.classList.add("nav-underline", "absolute", "bottom-0", "left-0", "h-[2px]", "bg-indigo-600", "transition-all", "duration-300");
+                underline.classList.add("nav-underline", "absolute", "bottom-0", "left-0", "h-[2px]",
+                    darkMode ? "bg-indigo-400" : "bg-indigo-600",
+                    "transition-all", "duration-300");
                 link.appendChild(underline);
 
                 // Set initial state
@@ -117,10 +122,16 @@ const Navbar = () => {
 
                 if (active) {
                     gsap.set(underline, { width: "100%" });
-                    gsap.set(link, { fontWeight: "bold", color: "#4f46e5" });
+                    gsap.set(link, {
+                        fontWeight: "bold",
+                        color: darkMode ? "#818cf8" : "#4f46e5"
+                    });
                 } else {
                     gsap.set(underline, { width: "0%" });
-                    gsap.set(link, { fontWeight: "normal", color: "#1f2937" });
+                    gsap.set(link, {
+                        fontWeight: "normal",
+                        color: darkMode ? "#f3f4f6" : "#1f2937"
+                    });
 
                     // Add hover effects only to non-active links
                     link.addEventListener("mouseenter", () => {
@@ -135,20 +146,20 @@ const Navbar = () => {
                 }
             }
         });
-    }, [currentPath]);
+    }, [currentPath, darkMode]); // Added darkMode as dependency to update when mode changes
 
     const toggleMobileMenu = () => {
         setIsOpen(!isOpen);
     };
 
     return (
-        <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-gray-100/5">
+        <nav className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md ${darkMode ? 'bg-gray-900/90 text-white' : 'bg-gray-100/5'}`}>
             <div className="container mx-auto px-4 py-4 flex justify-between items-center relative">
                 {/* Logo */}
                 <Link
                     ref={logoRef}
                     to="/"
-                    className="text-2xl font-bold text-indigo-600 flex items-center space-x-2 transform transition hover:scale-105"
+                    className={`text-2xl font-bold ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} flex items-center space-x-2 transform transition hover:scale-105`}
                 >
                     <span>TIT DevComm</span>
                 </Link>
@@ -163,7 +174,9 @@ const Navbar = () => {
                                 key={index}
                                 ref={(el) => (linkRefs.current[index] = el)}
                                 to={link.path}
-                                className={`relative pb-1 transition-all duration-300 ${active ? "font-bold text-indigo-600" : "text-gray-800"
+                                className={`relative pb-1 transition-all duration-300 ${active
+                                        ? `font-bold ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`
+                                        : darkMode ? 'text-white' : 'text-gray-800'
                                     }`}
                             >
                                 {link.name}
@@ -172,20 +185,69 @@ const Navbar = () => {
                     })}
                 </div>
 
-                {/* Join Us Button */}
-                <div className="hidden md:block">
+                {/* Dark Mode Toggle & Join Us Buttons */}
+                <div className="hidden md:flex items-center space-x-4">
+                    {/* Dark Mode Toggle - Improved */}
+                    <button
+                        ref={toggleRef}
+                        onClick={toggleDarkMode}
+                        className="relative focus:outline-none"
+                        aria-label="Toggle dark mode"
+                    >
+                        <div className="w-14 h-7 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full px-1">
+                            {/* Toggle Background */}
+                            <div className={`absolute inset-0 rounded-full ${darkMode ? 'bg-gray-700' : 'bg-gray-300'} transition-colors duration-300`}></div>
+
+                            {/* Sun Icon */}
+                            <Sun
+                                size={16}
+                                className={`absolute right-2 text-yellow-500 transition-all duration-300 ${darkMode ? 'opacity-40 scale-90' : 'opacity-100 scale-100'
+                                    }`}
+                            />
+
+                            {/* Moon Icon */}
+                            <Moon
+                                size={16}
+                                className={`absolute left-2 text-blue-200 transition-all duration-300 ${darkMode ? 'opacity-100 scale-100' : 'opacity-40 scale-90'
+                                    }`}
+                            />
+
+                            {/* Toggle Circle Indicator */}
+                            <div
+                                className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-500 ease-in-out ${darkMode ? 'translate-x-7' : 'translate-x-0'
+                                    }`}
+                            />
+                        </div>
+                    </button>
+
+                    {/* Join Us Button */}
                     <Link
                         ref={joinButtonRef}
                         to="/join-us"
-                        className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition-all"
+                        className={`${darkMode
+                                ? 'bg-indigo-600 hover:bg-indigo-700'
+                                : 'bg-indigo-600 hover:bg-indigo-700'
+                            } text-white px-5 py-2 rounded-full transition-all`}
                     >
                         Join Us
                     </Link>
                 </div>
 
                 {/* Mobile Menu Toggle */}
-                <div className="md:hidden">
-                    <button onClick={toggleMobileMenu} className="text-gray-800 focus:outline-none">
+                <div className="md:hidden flex items-center space-x-3">
+                    {/* Dark Mode Toggle for Mobile - Improved */}
+                    <button
+                        onClick={toggleDarkMode}
+                        className={`p-2 rounded-full transition-all duration-300 ${darkMode
+                                ? 'bg-gray-800 text-yellow-300'
+                                : 'bg-indigo-100 text-indigo-800'
+                            }`}
+                        aria-label="Toggle dark mode"
+                    >
+                        {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+                    </button>
+
+                    <button onClick={toggleMobileMenu} className={`${darkMode ? 'text-white' : 'text-gray-800'} focus:outline-none`}>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
@@ -193,7 +255,13 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div ref={mobileMenuRef} className="fixed top-16 left-0 w-full bg-gray-100/95 backdrop-blur-md shadow-lg md:hidden">
+                <div
+                    ref={mobileMenuRef}
+                    className={`fixed top-16 left-0 w-full ${darkMode
+                            ? 'bg-gray-900/95 text-white'
+                            : 'bg-gray-100/95 text-gray-800'
+                        } backdrop-blur-md shadow-lg md:hidden`}
+                >
                     <div className="container mx-auto px-4 py-4">
                         {navLinks.map((link, index) => {
                             const active = isLinkActive(link.path);
@@ -203,7 +271,10 @@ const Navbar = () => {
                                     key={index}
                                     to={link.path}
                                     onClick={toggleMobileMenu}
-                                    className={`block py-3 border-b last:border-b-0 transition-all duration-300 transform ${active ? "font-bold text-indigo-600" : "text-gray-800"
+                                    className={`block py-3 border-b ${darkMode ? 'border-gray-700' : ''
+                                        } last:border-b-0 transition-all duration-300 transform ${active
+                                            ? `font-bold ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`
+                                            : darkMode ? 'text-white' : 'text-gray-800'
                                         }`}
                                 >
                                     {link.name}
@@ -215,7 +286,10 @@ const Navbar = () => {
                         <Link
                             to="/join-us"
                             onClick={toggleMobileMenu}
-                            className="block py-3 text-white bg-indigo-600 rounded-md text-center mt-4"
+                            className={`block py-3 ${darkMode
+                                    ? 'bg-indigo-600 hover:bg-indigo-700'
+                                    : 'bg-indigo-600 hover:bg-indigo-700'
+                                } text-white rounded-md text-center mt-4`}
                         >
                             Join Us
                         </Link>

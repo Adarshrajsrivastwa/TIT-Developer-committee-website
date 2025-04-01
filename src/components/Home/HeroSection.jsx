@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ArrowRight } from "lucide-react";
@@ -8,6 +8,8 @@ import Typed from "typed.js";
 import PhotoSlider from "./PhotoSlider";
 
 const HeroSection = () => {
+    
+
     const heroRef = useRef(null);
     const typedRef = useRef(null);
     const photoRef = useRef(null);
@@ -61,10 +63,10 @@ const HeroSection = () => {
     useEffect(() => {
         const typed = new Typed(typedRef.current, {
             strings: [
-                "<span class='font-bold text-gray-900'>Empowering Juniors, Led by Seniors</span>",
-                "<span class='font-semibold text-gray-700 text-4xl'>90%+ ATS-Friendly Resumes</span>",
-                "<span class='font-semibold text-gray-700 text-4xl'>Mastering Versatile Tech Domains</span>",
-                "<span class='font-semibold text-gray-700 text-4xl  '>Empowered 15+ Students in Machine Learning</span>"
+                "<span class='font-bold text-gray-900 dark:text-gray-200'>Empowering Juniors, Led by Seniors</span>",
+                "<span class='font-semibold text-gray-700 dark:text-gray-200 text-4xl'>90%+ ATS-Friendly Resumes</span>",
+                "<span class='font-semibold text-gray-700 dark:text-gray-200 text-4xl'>Mastering Versatile Tech Domains</span>",
+                "<span class='font-semibold text-gray-700 dark:text-gray-200 text-4xl  '>Empowered 15+ Students in Machine Learning</span>"
             ],
             typeSpeed: 50,
             backSpeed: 25,
@@ -129,7 +131,7 @@ const HeroSection = () => {
                         <span ref={typedRef}></span>
                     </h1>
 
-                    <p className="animate-element text-lg md:text-xl text-gray-600 max-w-md md:max-w-xl mx-auto md:mx-0">
+                    <p className="animate-element text-lg md:text-xl text-gray-600 dark:text-gray-200 max-w-md md:max-w-xl mx-auto md:mx-0">
                         Join the Revolution of Tech Learning and Mentorship. Transforming students into industry-ready professionals.
                     </p>
 

@@ -184,7 +184,7 @@ const PhotoSlider = () => {
     return (
         <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
             {/* Main slider container - Adjusted height for mobile */}
-            <div className="relative w-full overflow-hidden rounded-lg bg-gray-100 h-60 sm:h-80 md:h-96">
+            <div className="relative w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-900 h-60 sm:h-80 md:h-96">
                 {/* Slides */}
                 {photos.map((photo, index) => (
                     <div

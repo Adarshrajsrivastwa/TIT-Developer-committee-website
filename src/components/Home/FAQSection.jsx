@@ -95,7 +95,7 @@ const FAQSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative bg-gray-100 py-16 overflow-hidden mt-10"
+      className="relative py-16 overflow-hidden mt-10"
     >
       {/* Floating Icons */}
       <div className="absolute top-10 left-10 text-blue-400 floating-icon opacity-20">
@@ -112,7 +112,7 @@ const FAQSection = () => {
       </div>
 
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-10">
+        <h2 className="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-200 mb-10">
           Frequently Asked <span className="text-indigo-600">Questions</span>
         </h2>
 
@@ -121,10 +121,10 @@ const FAQSection = () => {
             <div
               key={index}
               ref={(el) => (faqRefs.current[index] = el)}
-              className="border-b border-gray-300 py-4 transition-all duration-300 hover:bg-gray-100 rounded-md"
+              className="border-b border-gray-700 py-4 transition-all duration-300 dark:bg-gray-900 hover:bg-gray-100 rounded-md"
             >
               <button
-                className="w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800 px-4 py-2 focus:outline-none transition-all duration-300"
+                className="w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800 dark:text-gray-300 px-4 py-2 focus:outline-none transition-all duration-300"
                 onClick={() => toggleFAQ(index)}
               >
                 {faq.question}
@@ -140,7 +140,7 @@ const FAQSection = () => {
                   openIndex === index ? "max-h-40 opacity-100 py-2 px-4" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="text-gray-600">{faq.answer}</p>
+                <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
               </div>
             </div>
           ))}

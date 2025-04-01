@@ -1,15 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroSection from '../components/Home/HeroSection.jsx';
 import ImpactSection from '../components/Home/ImpactSection';
 import FAQSection from '../components/Home/FAQSection.jsx';
 import Contact from '../components/Home/Conatct.jsx';
+import { ThemeContext } from '../components/Theme/ThemeContext.jsx';
 
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
+
+  const { darkMode } = useContext(ThemeContext);
+
   const sectionRefs = {
     hero: useRef(null),
     photoSlider: useRef(null),
@@ -41,7 +45,7 @@ function Home() {
   });
 
   return (
-    <div className="flex flex-col min-h-screen mt-8 bg-gray-100">
+    <div className={`flex flex-col min-h-screen bg-gray-100 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-900'}`}>
       <div ref={sectionRefs.hero}>
         <HeroSection />
       </div>

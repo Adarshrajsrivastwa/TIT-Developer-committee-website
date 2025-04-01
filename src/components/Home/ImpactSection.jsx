@@ -9,6 +9,7 @@ import {
     BookOpen
 } from 'lucide-react';
 
+
 const ImpactSection = () => {
     const impactRef = useRef(null);
 
@@ -74,8 +75,8 @@ const ImpactSection = () => {
     return (
         <div className="py-10 mt-20">
             <div className="container mx-auto px-6">
-                <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
-                    Our Impact by the Numbers
+                <h2 className="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-gray-200">
+                    Our <span className="text-indigo-600">Impact</span> by the Numbers
                 </h2>
 
                 <div
@@ -85,17 +86,17 @@ const ImpactSection = () => {
                     {impactStats.map((item, index) => (
                         <div
                             key={index}
-                            className="bg-white p-6 rounded-xl text-center 
+                            className="bg-white dark:bg-gray-700 p-6 rounded-xl text-center 
                          transform transition-all duration-300 
                          hover:scale-105 hover:shadow-lg"
                         >
                             <div className="flex justify-center mb-4">
                                 {item.icon}
                             </div>
-                            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-200">
                                 {item.stat}
                             </h3>
-                            <p className="text-gray-600">
+                            <p className="text-gray-600 dark:text-gray-400">
                                 {item.description}
                             </p>
                         </div>
