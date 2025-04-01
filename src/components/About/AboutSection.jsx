@@ -267,7 +267,7 @@ const MissionSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="bg-gradient-to-r from-indigo-500 dark:from-indigo-900 via-purple-500 to-pink-500 text-white py-16 px-4"
+            className="bg-gradient-to-r from-indigo-700 dark:from-indigo-900 via-purple-700 to-pink-700 text-white py-16 px-4"
         >
             <div className="container mx-auto text-center">
                 <h2 ref={headingRef} className="text-4xl font-extrabold mb-8">
