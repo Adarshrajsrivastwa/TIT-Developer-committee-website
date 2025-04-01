@@ -18,7 +18,7 @@ const splitTextToSpans = (element) => {
     if (!element) return;
     const text = element.textContent;
     const words = text.split(' ');
-    element.innerHTML = words.map(word => `<span class="word" style="display: inline-block;">${word}</span>`).join(' ');
+    element.innerHTML = words.map(word => `<span class="word dark:text-gray-200" style="display: inline-block;">${word}</span>`).join(' ');
 };
 
 // Utility function to split text nodes into words while preserving HTML
@@ -36,7 +36,7 @@ const splitTextNodesToSpans = (element) => {
         const spanContainer = document.createDocumentFragment();
         words.forEach((word, index) => {
             const span = document.createElement('span');
-            span.className = 'word';
+            span.className = 'word dark:text-gray-300';
             span.style.display = 'inline-block';
             span.textContent = word;
             spanContainer.appendChild(span);
@@ -154,7 +154,7 @@ const WhyJoinSection = () => {
                     <h2 ref={headingRef} className="text-4xl font-extrabold text-gray-900 mb-4">
                         Why <span>Join</span> Us?
                     </h2>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         Transform your technical journey with our comprehensive community support
                     </p>
                 </div>
@@ -164,15 +164,15 @@ const WhyJoinSection = () => {
                         <div
                             key={index}
                             ref={el => benefitsRef.current[index] = el}
-                            className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+                            className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
                         >
                             <div className="flex items-center mb-4">
-                                <div className="mr-4 bg-white p-3 rounded-full shadow-md">
+                                <div className="mr-4 bg-white dark:bg-gray-600 p-3 rounded-full shadow-md">
                                     {benefit.icon}
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-800">{benefit.title}</h3>
+                                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{benefit.title}</h3>
                             </div>
-                            <p className="text-gray-600">{benefit.description}</p>
+                            <p className="text-gray-600 dark:text-gray-400">{benefit.description}</p>
                         </div>
                     ))}
                 </div>
@@ -267,11 +267,11 @@ const MissionSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-16 px-4"
+            className="bg-gradient-to-r from-indigo-500 dark:from-indigo-900 via-purple-500 to-pink-500 text-white py-16 px-4"
         >
             <div className="container mx-auto text-center">
                 <h2 ref={headingRef} className="text-4xl font-extrabold mb-8">
-                    Our Impact in Numbers
+                    Our <span>Impact</span> in Numbers
                 </h2>
                 <div className="grid md:grid-cols-3 gap-8">
                     {stats.map((stat, index) => (
@@ -297,6 +297,9 @@ const MissionSection = () => {
 
 // AboutComp Component
 const AboutComp = () => {
+
+
+
     const sectionRef = useRef(null);
     const headingRef = useRef(null);
     const textContainerRef = useRef(null);
@@ -357,9 +360,9 @@ const AboutComp = () => {
     }, []);
 
     return (
-        <div className="bg-gray-100">
-            <header ref={sectionRef} className="bg-gray-100 py-16 mt-10">
-                <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center">
+        <div>
+            <header ref={sectionRef} className="py-16">
+                <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center mt-10">
                     {/* Text Section */}
                     <div ref={textContainerRef} className="md:w-1/2 text-center md:text-left">
                         <h1 ref={headingRef} className="text-3xl md:text-5xl font-extrabold mb-10 md:mb-10">
