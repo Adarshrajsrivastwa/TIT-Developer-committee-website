@@ -77,8 +77,7 @@ const MentorCard = ({ mentor }) => {
     return (
         <div
             ref={cardRef}
-            className="relative bg-white rounded-2xl p-6 
-        border border-gray-100 
+            className="relative bg-white dark:bg-gray-800 rounded-2xl p-6
         transition-all duration-300 
         transform hover:-translate-y-2
         flex flex-col"
@@ -95,7 +94,7 @@ const MentorCard = ({ mentor }) => {
 
             <div className="flex flex-col items-center space-y-4 flex-grow">
                 <div className="w-32 h-32 rounded-full overflow-hidden 
-          border-4 border-white ">
+          border-4 border-white dark:border-gray-500 ">
                     <img
                         src={mentor.image}
                         alt={mentor.name}
@@ -104,20 +103,20 @@ const MentorCard = ({ mentor }) => {
                 </div>
 
                 <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-800">{mentor.name}</h3>
-                    <p className="text-indigo-600 font-semibold">{mentor.expertise}</p>
-                    <p className="text-gray-600 mt-2 text-sm px-2">{mentor.description}</p>
+                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{mentor.name}</h3>
+                    <p className="text-indigo-500 dark:text-indigo-600 font-semibold">{mentor.expertise}</p>
+                    <p className="text-gray-600 mt-2 text-sm px-2 dark:text-gray-300">{mentor.description}</p>
                 </div>
 
                 <div className="mt-4 w-full">
                     <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center justify-center">
+                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center justify-center">
                             <AwardIcon size={16} className="mr-2 text-amber-500" />
                             Key Achievements
                         </h4>
-                        <ul className="text-xs text-gray-600 text-center space-y-1">
+                        <ul className="text-xs text-gray-600 dark:text-gray-300 text-center space-y-1">
                             {mentor.achievements.map((achievement, index) => (
-                                <li key={index} className="bg-gray-50 rounded px-2 py-1">
+                                <li key={index} className="bg-gray-50 dark:bg-gray-500 rounded-md px-2 py-1">
                                     {achievement}
                                 </li>
                             ))}
@@ -148,13 +147,13 @@ const MentorsPage = () => {
 
 
     return (
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
+        <div className="py-16">
             <div className="container mx-auto px-4">
                 <div ref={headRef} className="text-center mb-12 mt-10">
-                    <h2 className="text-4xl font-extrabold text-gray-900">
+                    <h2 className="text-4xl font-extrabold text-gray-900 dark:text-gray-200">
                         Meet Our <span className="text-indigo-600">Expert Mentors</span>
                     </h2>
-                    <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         Industry veterans committed to nurturing the next generation of tech innovators through personalized guidance and real-world insights.
                     </p>
                 </div>
