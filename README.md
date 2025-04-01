@@ -51,19 +51,24 @@ The *TIT Developer Community Website* is a *static web platform* designed to sho
 ## 🏗 Project Setup  
 
 ### 📥 Clone the Repository  
+```
 git clone https://github.com/Adarshrajsrivastwa/TIT-Developer-committee-website.git  
 cd TIT-Developer-committee-website  
+```
 
 ### 📦 Install Dependencies  
-npm install  
+```
+npm install
+```  
 
-### 🚀 Run the Project  
+### 🚀 Run the Project
+```
 npm run dev  
+```
 
 ## 📂 File Structure  
+```
 client/                 # Frontend (Vite + React)
-│── public/             
-│   ├── assets/         # Static assets (images, videos, etc.)
 │── src/
 │   ├── components/     # Reusable UI components
 │   ├── pages/          # Page components
@@ -78,6 +83,7 @@ client/                 # Frontend (Vite + React)
 │── README.md
 │── vite.config.js
 
+```
 
 
 ////////////////////////////////////////////////////////////////
