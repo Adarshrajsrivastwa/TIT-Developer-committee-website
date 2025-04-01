@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './components/Theme/ThemeContext.jsx';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
 import Home from './pages/HomePage.jsx';
@@ -12,21 +13,23 @@ import JoinUs from './pages/JoinUs';
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col bg-gray-100">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/mentors" element={<Mentors />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/hall-of-fame" element={<HallOfFame />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/join-us" element={<JoinUs />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="min-h-screen flex flex-col bg-gray-100">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/mentors" element={<Mentors />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/hall-of-fame" element={<HallOfFame />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/join-us" element={<JoinUs />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
