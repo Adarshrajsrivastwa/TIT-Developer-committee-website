@@ -378,7 +378,7 @@ const DevCommunityGallery = () => {
             <input
               type="text"
               placeholder="Search by name or enrollment number..."
-              className="w-full px-4 py-2 text-gray-700 bg-transparent border-none focus:outline-none"
+              className="w-full px-4 py-2 text-gray-700 dark:text-gray-300 bg-transparent border-none focus:outline-none"
               value={searchTerm}
               onChange={handleSearchChange}
             />
@@ -408,7 +408,7 @@ const DevCommunityGallery = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-600">No students match your search criteria</p>
+            <p className="text-xl text-gray-600 dark:text-gray-400">No students match your search criteria</p>
             <button
               className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
               onClick={() => setSearchTerm('')}
