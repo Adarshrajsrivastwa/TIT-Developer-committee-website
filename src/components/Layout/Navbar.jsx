@@ -155,16 +155,44 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md ${darkMode ? 'bg-gray-900/90 text-white' : 'bg-gray-100/5'}`}>
             <div className="container mx-auto px-4 py-4 flex justify-between items-center relative">
-                {/* Logo */}
+                {/* Desktop Logo - Hidden on mobile */}
                 <Link
                     ref={logoRef}
                     to="/"
-                    className={`text-2xl font-bold ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} flex items-center space-x-2 transform transition hover:scale-105`}
+                    className={`text-2xl font-bold ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} flex items-center space-x-2 transform transition hover:scale-105 hidden md:flex`}
                 >
                     <span>TIT DevComm</span>
                 </Link>
 
-                {/* Desktop Navigation - Changed from absolute to flex layout */}
+                {/* Mobile Layout: Hamburger on left, Logo in center, Dark mode toggle on right */}
+                <div className="md:hidden flex w-full items-center justify-between">
+                    {/* Hamburger Menu on Left */}
+                    <button onClick={toggleMobileMenu} className={`${darkMode ? 'text-white' : 'text-gray-800'} focus:outline-none`}>
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                    
+                    {/* Logo in Center for Mobile */}
+                    <Link
+                        to="/"
+                        className={`text-xl font-bold ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} flex items-center space-x-2 transform transition hover:scale-105`}
+                    >
+                        <span>TIT DevComm</span>
+                    </Link>
+                    
+                    {/* Dark Mode Toggle on Right */}
+                    <button
+                        onClick={toggleDarkMode}
+                        className={`p-2 rounded-full transition-all duration-300 ${darkMode
+                                ? 'bg-gray-800 text-yellow-300'
+                                : 'bg-indigo-100 text-indigo-800'
+                            }`}
+                        aria-label="Toggle dark mode"
+                    >
+                        {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+                    </button>
+                </div>
+
+                {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center space-x-6 flex-1 justify-center">
                     {navLinks.map((link, index) => {
                         const active = isLinkActive(link.path);
@@ -185,7 +213,7 @@ const Navbar = () => {
                     })}
                 </div>
 
-                {/* Dark Mode Toggle & Join Us Buttons */}
+                {/* Dark Mode Toggle & Join Us Buttons - Desktop Only */}
                 <div className="hidden md:flex items-center space-x-4">
                     {/* Dark Mode Toggle - Improved */}
                     <button
@@ -231,25 +259,6 @@ const Navbar = () => {
                     >
                         Join Us
                     </Link>
-                </div>
-
-                {/* Mobile Menu Toggle */}
-                <div className="md:hidden flex items-center space-x-3">
-                    {/* Dark Mode Toggle for Mobile - Improved */}
-                    <button
-                        onClick={toggleDarkMode}
-                        className={`p-2 rounded-full transition-all duration-300 ${darkMode
-                                ? 'bg-gray-800 text-yellow-300'
-                                : 'bg-indigo-100 text-indigo-800'
-                            }`}
-                        aria-label="Toggle dark mode"
-                    >
-                        {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-                    </button>
-
-                    <button onClick={toggleMobileMenu} className={`${darkMode ? 'text-white' : 'text-gray-800'} focus:outline-none`}>
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
                 </div>
             </div>
 
