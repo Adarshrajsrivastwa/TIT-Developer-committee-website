@@ -78,7 +78,7 @@ const EventsList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16">
+    <div className="min-h-screen py-16">
       <div className="container mx-auto px-4">
 
         {/* Header Section */}
@@ -86,10 +86,10 @@ const EventsList = () => {
 
           {/* Text Section */}
           <div className="md:w-1/2 text-center md:text-left">
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-10 md:mb-6">
+            <h1 className="text-4xl font-extrabold text-gray-900 dark:text-gray-200 mb-10 md:mb-6">
               Our <span className="text-indigo-600">Upcoming Events</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mb-7 md:mb-0">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mb-7 md:mb-0">
               Empowering tech enthusiasts through immersive learning experiences and cutting-edge workshops.
             </p>
           </div>
@@ -112,8 +112,8 @@ const EventsList = () => {
               onClick={() => handleFilter(category)}
               className={`flex items-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 
                 ${activeFilter === category
-                  ? "bg-indigo-600 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-indigo-100"}`}
+                  ? "bg-indigo-600 dark:bg-indigo-800 text-white"
+                  : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-900"}`}
             >
               <FilterIcon size={16} className="mr-2" />
               {category}
@@ -126,26 +126,27 @@ const EventsList = () => {
           {filteredEvents.map((event) => (
             <div
               key={event.id}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+              className="bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-none hover:shadow-xl dark:hover:shadow-gray-950
+               transition-all duration-300 transform hover:-translate-y-2 group"
             >
               <div className="flex items-center mb-4">
-                <div className="mr-4 bg-gray-100 p-3 rounded-full">
+                <div className="mr-4 bg-gray-100 dark:bg-gray-600 p-3 rounded-full">
                   {event.icon}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800">{event.title}</h3>
-                  <p className="text-sm text-gray-500 flex items-center">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">{event.title}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
                     <CalendarIcon size={14} className="mr-2" />
                     {new Date(event.date).toLocaleDateString()}
                   </p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4 text-sm">{event.description}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">{event.description}</p>
               <div className="flex justify-between items-center">
-                <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs">
+                <span className="bg-indigo-50 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-100 px-3 py-1 rounded-full text-xs">
                   {event.type}
                 </span>
-                <span className="text-gray-500 text-sm">
+                <span className="text-gray-500 dark:text-gray-400 text-sm">
                   {event.participants} Participants
                 </span>
               </div>
