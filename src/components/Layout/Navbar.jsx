@@ -23,7 +23,7 @@ const Navbar = () => {
         { name: "Mentors", path: "/mentors" },
         { name: "Events", path: "/events" },
         { name: "Hall of Fame", path: "/hall-of-fame" },
-        { name: "Testimonials", path: "/testimonials" },
+        { name: "Reviews", path: "/testimonials" },
     ];
 
     // Function to determine if a link is active
