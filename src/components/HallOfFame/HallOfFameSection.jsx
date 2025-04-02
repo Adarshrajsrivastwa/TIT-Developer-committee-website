@@ -146,9 +146,9 @@ const StudentCard = ({ student, domain }) => {
     return (
         <div
             ref={cardRef}
-            className="bg-white rounded-2xl p-4 sm:p-6
-            border border-gray-100 
-            hover:shadow-xl 
+            className="bg-white dark:bg-gray-700 dark:hover:bg-gray-800 rounded-2xl p-4 sm:p-6
+            border border-gray-100 dark:border-none
+            hover:shadow-xl dark:shadow-gray-950
             transition-all duration-300 
             transform hover:-translate-y-2 
             flex items-center justify-between"
@@ -157,19 +157,19 @@ const StudentCard = ({ student, domain }) => {
                 <img
                     src={student.image}
                     alt={student.name}
-                    className="w-full h-full object-cover rounded-xl border border-gray-200 shadow-md"
+                    className="w-full h-full object-cover rounded-xl border border-gray-200 dark:border-none shadow-md"
                 />
             </div>
             <div className="flex-grow">
                 <div className="flex items-center mb-2 sm:mb-4">
-                    <div className="mr-2 sm:mr-4 bg-gray-100 p-2 sm:p-3 rounded-full">
+                    <div className="mr-2 sm:mr-4 bg-gray-100 dark:bg-gray-600 p-2 sm:p-3 rounded-full">
                         {DOMAIN_ICONS[domain]}
                     </div>
                     <div>
-                        <h3 className="text-base sm:text-xl font-bold text-gray-800">
+                        <h3 className="text-base sm:text-xl font-bold text-gray-800 dark:text-gray-300">
                             {student.name}
                         </h3>
-                        <p className="text-xs sm:text-sm text-gray-500">
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                             {student.year}
                         </p>
                     </div>
@@ -178,7 +178,7 @@ const StudentCard = ({ student, domain }) => {
                     {student.achievements.map((achievement, index) => (
                         <div
                             key={index}
-                            className="flex items-center text-gray-600"
+                            className="flex items-center text-gray-600 dark:text-gray-400"
                         >
                             <AwardIcon size={14} className="mr-2 text-amber-500" />
                             <span className="text-xs sm:text-sm">{achievement}</span>
@@ -265,17 +265,17 @@ const HallOfFameSection = () => {
     }, []);
 
     return (
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen py-16">
+        <div className="py-16">
             <div className="container mx-auto px-4">
                 {/* Header Section */}
                 <header className="text-center md:text-left mb-12 mt-10">
                     <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
                         {/* Title & Description */}
                         <div ref={headingRef} className="md:w-2/3 text-center md:text-left origin-center">
-                            <h1 className="text-5xl font-extrabold text-gray-900 mb-4 flex items-center justify-center md:justify-start">
+                            <h1 className="text-5xl font-extrabold text-gray-900 dark:text-gray-200 mb-4 flex items-center justify-center md:justify-start">
                                 Hall of <span className="text-indigo-600 ml-2">Fame</span>
                             </h1>
-                            <p className="text-xl text-gray-600 max-w-2xl text-center md:text-left">
+                            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl text-center md:text-left">
                                 Celebrating the exceptional achievements of our talented students.
                             </p>
                         </div>
@@ -300,8 +300,8 @@ const HallOfFameSection = () => {
                             className={`flex items-center px-4 py-2 rounded-full text-sm font-semibold 
                             transition-all duration-300 
                             ${activeFilter === category
-                                    ? "bg-indigo-600 text-white"
-                                    : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                    ? "bg-indigo-600 dark:bg-indigo-800 text-white"
+                                    : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-900"
                                 }`}
                         >
                             {category}
@@ -313,7 +313,7 @@ const HallOfFameSection = () => {
                 <div ref={sectionRef} className="px-2 sm:px-4">
                     {filteredData.map((section, sectionIndex) => (
                         <div key={sectionIndex} className="mb-12">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center justify-center md:justify-start">
+                            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6 flex items-center justify-center md:justify-start">
                                 {DOMAIN_ICONS[section.domain]}
                                 <span className="ml-3">{section.domain}</span>
                             </h2>
