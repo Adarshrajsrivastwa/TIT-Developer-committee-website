@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { gsap } from "gsap";
-import { ThemeContext } from "../Theme/ThemeContext"; // Import ThemeContext
+import { ThemeContext } from "../utils/ThemeContext"; // Import ThemeContext
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
