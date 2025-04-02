@@ -5,8 +5,29 @@ import { Link } from "react-router-dom";
 
 const StudentSkillCard = ({ student }) => {
   const cardRef = useRef(null);
-  const [isHovering, setIsHovering] = useState(false);
+  const imageContainerRef = useRef(null);
+  const zoomedImageRef = useRef(null);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const hoverTimeoutRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
 
+  // Check if device is mobile on component mount and window resize
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
+
+  // Entry animation
   useEffect(() => {
     gsap.from(cardRef.current, {
       y: 50,
@@ -16,65 +37,232 @@ const StudentSkillCard = ({ student }) => {
     });
   }, []);
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Image interactions - with improved hover handling
+  const handleImageClick = (e) => {
+    e.stopPropagation(); // Prevent card flip
+    if (isMobile) {
+      setIsImageZoomed(true);
+    }
   };
 
-  const handleMouseLeave = () => {
-    setIsHovering(false);
+  const handleImageHover = (e) => {
+    e.stopPropagation(); // Prevent card flip
+    if (!isMobile) {
+      // Use a slight delay to prevent accidental triggers
+      hoverTimeoutRef.current = setTimeout(() => {
+        setIsImageZoomed(true);
+      }, 100);
+    }
+  };
+
+  const handleImageHoverExit = (e) => {
+    e.stopPropagation(); // Prevent card events
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+  };
+
+  const handleZoomOverlayInteraction = (e) => {
+    // Keep the overlay open when interacting with it
+    e.stopPropagation();
+    
+    // Clear any pending close timeout
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+  };
+  
+  const handleZoomOverlayExit = () => {
+    // Only auto-close for non-mobile devices
+    if (!isMobile) {
+      // Set a short timeout to allow moving to the image itself
+      closeTimeoutRef.current = setTimeout(() => {
+        setIsImageZoomed(false);
+      }, 100);
+    }
+  };
+
+  const closeZoomOverlay = () => {
+    setIsImageZoomed(false);
+  };
+
+  // Card flip handlers - must not trigger when interacting with image
+  const handleCardClick = (e) => {
+    // Don't flip if clicked on image
+    if (isMobile && !imageContainerRef.current.contains(e.target)) {
+      setIsFlipped(!isFlipped);
+    }
+  };
+
+  const handleCardHover = (e) => {
+    // Don't flip if hovering over image
+    if (!isMobile && !imageContainerRef.current.contains(e.target)) {
+      setIsFlipped(true);
+    }
+  };
+  
+  const handleCardHoverExit = () => {
+    if (!isMobile) {
+      setIsFlipped(false);
+    }
   };
 
   return (
     <div
       ref={cardRef}
-      className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl h-full flex flex-col relative"
+      className="relative h-96 w-full mb-8 mx-2" // Spacing between cards
+      style={{ perspective: '1500px' }}
+      onClick={handleCardClick}
+      onMouseEnter={handleCardHover}
+      onMouseLeave={handleCardHoverExit}
     >
-      <div
-        className="overflow-hidden bg-gray-200 dark:bg-gray-700 h-48 relative"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+      <div 
+        className="w-full h-full transition-all duration-500 relative"
+        style={{ 
+          transformStyle: 'preserve-3d',
+          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+        }}
       >
-        <img
-          src={student.image}
-          alt={student.name}
-          className="w-full h-full object-cover"
-        />
+        {/* Front of card */}
+        <div 
+          className="absolute w-full h-full bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-xl"
+          style={{ backfaceVisibility: 'hidden' }}
+        >
+          {/* Image section - completely isolated from card flip behavior */}
+          <div 
+            ref={imageContainerRef}
+            className="overflow-hidden bg-gray-200 dark:bg-gray-700 h-48 relative"
+          >
+            <img
+              src={student.image}
+              alt={student.name}
+              className="w-full h-full object-cover cursor-pointer transition-transform duration-300 hover:scale-105"
+              onClick={handleImageClick}
+              onMouseEnter={handleImageHover}
+              onMouseLeave={handleImageHoverExit}
+            />
+          </div>
 
-        {/* Full-size image overlay that appears on hover */}
-        {isHovering && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75" onClick={handleMouseLeave}>
-            <div className="relative max-w-4xl max-h-screen p-4">
-              <img
-                src={student.image}
-                alt={student.name}
-                className="max-w-full max-h-full object-contain"
-              />
+          {/* Content section */}
+          <div className="p-6 bg-white dark:bg-gray-700 flex flex-col h-56">
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                {student.name}
+              </h3>
+              <span className="bg-indigo-600 dark:bg-indigo-800 text-white text-xs font-bold px-2 py-1 rounded">
+                #{student.enrollmentNumber}
+              </span>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">{student.program}</p>
+            <div className="mt-auto">
+              <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Skills</h4>
+              <div className="flex flex-wrap gap-2">
+                {student.skills.map((skill, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1 text-sm rounded-full bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-200 font-medium"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        )}
-      </div>
-      <div className="p-6 bg-white dark:bg-gray-700 flex-grow flex flex-col">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">{student.name}</h3>
-          <span className="bg-indigo-600 dark:bg-indigo-800 text-white text-xs font-bold px-2 py-1 rounded">
-            #{student.enrollmentNumber}
-          </span>
         </div>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{student.program}</p>
-        <div className="mb-4 mt-auto">
-          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Skills</h4>
-          <div className="flex flex-wrap gap-2">
-            {student.skills.map((skill, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 text-sm rounded-full bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-200 font-medium"
+
+        {/* Back of card (review) with circular image */}
+        <div 
+          className="absolute w-full h-full bg-white dark:bg-gray-700 p-6 flex flex-col justify-center rounded-lg shadow-md"
+          style={{ 
+            backfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)'
+          }}
+        >
+          {/* Circular image added above name */}
+          <div className="flex flex-col items-center mb-4">
+            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500 shadow-md mb-3">
+              <img 
+                src={student.image}
+                alt={student.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
+              {student.name}
+            </h3>
+          </div>
+          
+          <div className="flex justify-center mb-4">
+            <span className="text-yellow-500 mr-1">★</span>
+            <span className="text-yellow-500 mr-1">★</span>
+            <span className="text-yellow-500 mr-1">★</span>
+            <span className="text-yellow-500 mr-1">★</span>
+            <span className="text-yellow-500">★</span>
+          </div>
+          <p className="text-gray-700 dark:text-gray-300 italic text-center">
+            "{student.review}"
+          </p>
+          {isMobile && (
+            <button 
+              className="mt-6 bg-indigo-100 text-indigo-800 dark:bg-gray-600 dark:text-indigo-200 px-4 py-2 rounded-lg font-medium self-end"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFlipped(false);
+              }}
+            >
+              Back
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Image zoom overlay - with conditional behavior based on device */}
+      {isImageZoomed && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+          onClick={closeZoomOverlay}
+          onMouseMove={!isMobile ? handleZoomOverlayInteraction : undefined}
+          onMouseEnter={!isMobile ? handleZoomOverlayInteraction : undefined}
+          onMouseLeave={!isMobile ? handleZoomOverlayExit : undefined}
+        >
+          <div 
+            ref={zoomedImageRef}
+            className="relative max-w-4xl max-h-screen p-4"
+            onClick={(e) => e.stopPropagation()}
+            onMouseEnter={!isMobile ? handleZoomOverlayInteraction : undefined}
+            onMouseLeave={!isMobile ? handleZoomOverlayExit : undefined}
+          >
+            <img
+              src={student.image}
+              alt={student.name}
+              className="max-w-full max-h-full object-contain"
+              onMouseEnter={!isMobile ? handleZoomOverlayInteraction : undefined}
+            />
+            
+            {/* Close button only for mobile devices */}
+            {isMobile && (
+              <button 
+                className="absolute top-2 right-2 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center shadow-md"
+                onClick={closeZoomOverlay}
               >
-                {skill}
-              </span>
-            ))}
+                ✕
+              </button>
+            )}
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -82,57 +270,57 @@ const StudentSkillCard = ({ student }) => {
 const DevCommunityGallery = () => {
   const searchRef = useRef(null);
   const headerRef = useRef(null);
-  // const galleryRef = useRef(null);
+  const galleryRef = useRef(null);
   const headerImageRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredStudents, setFilteredStudents] = useState(students);
 
-  // useEffect(() => {
-  //   // Header animation
-  //   gsap.from(headerRef.current, {
-  //     y: -700,
-  //     opacity: 0,
-  //     duration: 2.5,
-  //     ease: "bounce.out"
-  //   });
+  useEffect(() => {
+    // Header animation
+    gsap.from(headerRef.current, {
+      y: -700,
+      opacity: 0,
+      duration: 2.5,
+      ease: "bounce.out"
+    });
 
-  //   // Header image animation
-  //   gsap.from(headerImageRef.current, {
-  //     x: 30,
-  //     opacity: 0,
-  //     duration: 1.2,
-  //     delay: 1.7,
-  //     ease: "power3.out"
-  //   });
+    // Header image animation
+    gsap.from(headerImageRef.current, {
+      x: 30,
+      opacity: 0,
+      duration: 1.2,
+      delay: 1.7,
+      ease: "power3.out"
+    });
 
-  //   // Stagger animation for gallery items
-  //   gsap.from(".student-card", {
-  //     opacity: 0,
-  //     y: 50,
-  //     stagger: 0.15,
-  //     delay: 2.5,
-  //     duration: 0.8,
-  //     ease: "power3.out",
-  //     scrollTrigger: {
-  //       trigger: galleryRef.current,
-  //       start: "top bottom-=100",
-  //     }
-  //   });
+    // Stagger animation for gallery items
+    gsap.from(".student-card", {
+      opacity: 0,
+      y: 50,
+      stagger: 0.15,
+      delay: 2.5,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: galleryRef.current,
+        start: "top bottom-=100",
+      }
+    });
 
-  //   gsap.from(".gallery-head", {
-  //     opacity: 0,
-  //     x: -500,
-  //     duration: 1,
-  //     delay: 2.5
-  //   });
+    gsap.from(".gallery-head", {
+      opacity: 0,
+      x: -500,
+      duration: 1,
+      delay: 2.5
+    });
 
-  //   gsap.from(searchRef.current, {
-  //     opacity: 0,
-  //     x: 500,
-  //     duration: 1,
-  //     delay: 2.5
-  //   })
-  // }, []);
+    gsap.from(searchRef.current, {
+      opacity: 0,
+      x: 500,
+      duration: 1,
+      delay: 2.5
+    })
+  }, []);
 
   // Filter students based on search term
   useEffect(() => {
