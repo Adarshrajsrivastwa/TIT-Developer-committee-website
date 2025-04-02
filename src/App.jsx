@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './components/Theme/ThemeContext.jsx';
+import { ThemeProvider } from './components/utils/ThemeContext.jsx';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
 import Home from './pages/HomePage.jsx';
@@ -10,11 +10,13 @@ import Events from './pages/Events';
 import HallOfFame from './pages/HallOfFame';
 import Testimonials from './pages/Testimonials';
 import JoinUs from './pages/JoinUs';
+import ScrollToTop from './components/utils/ScrollToTop.jsx';
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
           <Navbar />
           <Routes>
